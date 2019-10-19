@@ -1,0 +1,55 @@
+{
+  "name": "style-utils",
+  "version": "0.0.1",
+  "description": "A style utility for css-in-js frameworks.",
+  "main": "index.js",
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-node"
+      ],
+      [
+        "@pika/plugin-build-web"
+      ]
+    ]
+  },
+  "scripts": {
+    "build": "pack build",
+    "test": "jest src",
+    "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+  },
+  "keywords": [
+    "css-in-js",
+    "style",
+    "styled-components",
+    "jss",
+    "utils"
+  ],
+  "author": "Jose Quintas",
+  "license": "MIT",
+  "devDependencies": {
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.6.1",
+    "@pika/plugin-build-web": "^0.6.1",
+    "@pika/plugin-ts-standard-pkg": "^0.6.1",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
+    "typescript": "^3.6.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
