@@ -2,12 +2,12 @@ const DEFAULT_DURATION = 250
 const DEFAULT_EASING = 'cubic-bezier(0.4,0,0.2,1)'
 const DEFAULT_CSS_PROP = 'all'
 
-export interface TransitionCreationParams {
+export interface TransitionParams {
   duration: number
   easing: string
 }
 
-export const transition = (options?: TransitionCreationParams) => (
+export const transition = (options?: TransitionParams) => (
   cssProperties?: string[] | string,
   duration?: number | string,
   easing?: string
