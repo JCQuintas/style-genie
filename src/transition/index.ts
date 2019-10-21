@@ -1,5 +1,5 @@
 const DEFAULT_DURATION = 250
-const DEFAULT_EASING = 'cubic-bezier(0.4,0,0.2,1)'
+const DEFAULT_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)'
 const DEFAULT_CSS_PROP = 'all'
 
 export interface TransitionParams {

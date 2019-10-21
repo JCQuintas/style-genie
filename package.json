@@ -2,7 +2,6 @@
   "name": "style-utils",
   "version": "0.0.1",
   "description": "A style utility for css-in-js frameworks.",
-  "main": "index.js",
   "@pika/pack": {
     "pipeline": [
       [
@@ -11,7 +10,7 @@
     ]
   },
   "scripts": {
-    "build": "pack build",
+    "build": "pika build",
     "test": "jest src",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },

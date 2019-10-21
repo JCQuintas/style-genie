@@ -4,7 +4,17 @@
     "target": "es2019",
     "module": "esnext",
     "moduleResolution": "node",
+    "esModuleInterop": true,
     "lib": ["esnext"],
-    "strict": true
-  }
+    "strict": true,
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types", "src/@types"],
+  },
+  "include": [
+    "src/index.ts"
+  ],
+  "exclude": ["node_modules"]
 }

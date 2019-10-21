@@ -1,4 +1,6 @@
-import { PickEntries } from 'utils'
+type FilterProperties<T, P> = { [K in keyof T]: K extends P ? K : never }[keyof T]
+
+type PickEntries<T> = T[FilterProperties<T, 'entries'>]
 
 type Breakpoint<T> = { [P in keyof T]: string }
 
@@ -8,12 +10,6 @@ type Breakpoints<T> = {
 }
 
 type Entries<T> = { [K in keyof T]: number }
-
-export interface BreakpointParams<T = {}> {
-  entries?: Entries<T>
-  unit?: string
-  step?: number
-}
 
 export const defaultBreakpointParams = {
   entries: {

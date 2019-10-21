@@ -8,10 +8,11 @@
 # testing
 /coverage
 /try
-/pkg
 
 # production
 /build
+/dist
+/pkg
 
 # misc
 .DS_Store
