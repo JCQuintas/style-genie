@@ -53,8 +53,8 @@ export const breakpoint = <O, T extends Merge<typeof defaultBreakpointParams, O>
 
 breakpoint().down.lg
 breakpoint({ unit: 'em' }).down.lg
-const b = breakpoint({
+breakpoint({
   entries: {
     a: 1,
   },
-}).down
+}).down.a

@@ -1,8 +1,8 @@
-import { breakpoint, defaultBreakpointParams, BreakpointParams } from './breakpoint'
-import { color, ColorInput } from './color'
-import { spacing, SpacingParams } from './spacing'
-import { transition, TransitionParams } from './transition'
 import { FilterProperties, PickPalette } from 'utils'
+import { ColorInput, color } from 'color'
+import { BreakpointParams, breakpoint, defaultBreakpointParams } from 'breakpoint'
+import { SpacingParams, spacing } from 'spacing'
+import { TransitionParams, transition } from 'transition'
 
 interface GenerateStylesParams<T> {
   palette?: { [K in keyof PickPalette<T>]: ColorInput }

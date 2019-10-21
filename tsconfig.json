@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
+    "target": "es2019",
+    "module": "esnext",
+    "moduleResolution": "node",
     "lib": ["esnext"],
     "strict": true
   }
