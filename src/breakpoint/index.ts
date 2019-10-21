@@ -1,4 +1,4 @@
-import { PickEntries, FilterProperties, Merge } from 'utils'
+import { PickEntries } from 'utils'
 
 type Breakpoint<T> = { [P in keyof T]: string }
 
@@ -7,8 +7,10 @@ type Breakpoints<T> = {
   down: Breakpoint<T>
 }
 
+type Entries<T> = { [K in keyof T]: number }
+
 export interface BreakpointParams<T = {}> {
-  entries?: { [K in keyof PickEntries<T>]: number }
+  entries?: Entries<T>
   unit?: string
   step?: number
 }
@@ -25,36 +27,33 @@ export const defaultBreakpointParams = {
   step: 5,
 }
 
-export const breakpoint = <O, T extends Merge<typeof defaultBreakpointParams, O>>(options?: BreakpointParams<O>) => {
-  const entries = (options && options.entries) || defaultBreakpointParams.entries
-  const unit = (options && options.unit) || defaultBreakpointParams.unit
-  const step = (options && options.step) || defaultBreakpointParams.step
-  const keys = Object.keys(entries)
+export const breakpoint = <E = PickEntries<typeof defaultBreakpointParams>>(
+  entries?: Entries<E>,
+  unit?: string,
+  step?: number
+): Breakpoints<E> => {
+  const _entries = entries || (defaultBreakpointParams.entries as PickEntries<typeof defaultBreakpointParams>)
+  const _unit = unit || defaultBreakpointParams.unit
+  const _step = step || defaultBreakpointParams.step
+  const keys = Object.keys(_entries)
 
   const up = Object.fromEntries(
-    Object.entries(entries).map(([key, value]) => [key, `@media (min-width:${value}${unit})`])
+    Object.entries(_entries).map(([key, value]) => [key, `@media (min-width:${value}${_unit})`])
   )
 
   const down = Object.fromEntries(
-    Object.keys(entries).map((key, i) => {
+    Object.keys(_entries).map((key, i) => {
       const endIndex = i + 1
       if (endIndex === keys.length) return [key, Object.values(up)[0]]
-      return [key, `@media (max-width:${entries[keys[endIndex] as keyof typeof entries] - step / 100}${unit})`]
+      return [key, `@media (max-width:${_entries[keys[endIndex] as keyof typeof entries] - _step / 100}${_unit})`]
     })
   )
 
-  return { up, down } as FilterProperties<
-    PickEntries<T>,
-    keyof PickEntries<T>
-  > extends keyof typeof defaultBreakpointParams['entries']
-    ? Breakpoints<PickEntries<typeof defaultBreakpointParams>>
-    : Breakpoints<PickEntries<T>>
+  return { up, down } as Breakpoints<E>
 }
 
 breakpoint().down.lg
-breakpoint({ unit: 'em' }).down.lg
+// breakpoint('em').down.lg
 breakpoint({
-  entries: {
-    a: 1,
-  },
+  a: 1,
 }).down.a
