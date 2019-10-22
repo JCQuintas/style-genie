@@ -13,7 +13,7 @@ interface Transition {
 }
 
 export const createTransition = (options?: CreateTransitionParams) => {
-  const transition = (cssProperties?: string[] | string, duration?: number | string, easing?: string) => {
+  const transition: Transition = (cssProperties?: string[] | string, duration?: number | string, easing?: string) => {
     const isDurationString = typeof duration === 'string'
     const _duration = isDurationString
       ? (options && options.duration) || DEFAULT_DURATION
@@ -24,5 +24,5 @@ export const createTransition = (options?: CreateTransitionParams) => {
     if (typeof _cssProperties === 'string') return `${_cssProperties} ${_duration}ms ${_easing}`
     return _cssProperties.map(v => `${v} ${_duration}ms ${_easing}`).join(', ')
   }
-  return transition as Transition
+  return transition
 }
