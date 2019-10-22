@@ -4,7 +4,7 @@ export interface CreateSpacingParams {
   increment?: number
 }
 
-interface Spacing {
+export interface Spacing {
   (spacing?: number, asNumber?: false): string
   (spacing: number, asNumber: true): number
   (vertical: number, horizontal: number): string

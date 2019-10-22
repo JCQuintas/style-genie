@@ -13,6 +13,10 @@ interface ManipulateParams {
   opacity?: number
 }
 
+interface Manipulate {
+  (options: ManipulateParams): string
+}
+
 const manipulate = (colorArray: ColorArray) => (options: ManipulateParams) => {
   const hsl = RGBToHSLArray(colorArray)
   const { hueShift, illuminate, saturate, opacity } = options
@@ -34,11 +38,17 @@ const getColorArray = (color: ColorInput): ColorArray => {
 
 export type CreateColorParams = ColorInput
 
+export type Color = {
+  color: string
+  manipulate: Manipulate
+  hexColor: string
+}
+
 export const createColor = (color: CreateColorParams) => {
   const colorArray = getColorArray(color)
   return {
     color: `rgba(${colorArray.join(',')},1)`,
     manipulate: manipulate(colorArray),
     hexColor: `#${colorArray.map(v => `0${v.toString(16)}`.slice(-2)).join('')}`,
-  }
+  } as Color
 }

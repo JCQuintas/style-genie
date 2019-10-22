@@ -2,17 +2,20 @@ type FilterProperties<T, P> = { [K in keyof T]: K extends P ? K : never }[keyof 
 
 type PickEntries<T> = T[FilterProperties<T, 'entries'>]
 
-type Breakpoint<T extends CreateBreakpointParams['entries']> = { [P in keyof T]: string }
-
-type Breakpoints<T extends CreateBreakpointParams> = {
-  up: Breakpoint<PickEntries<MergeParams<T>>>
-  down: Breakpoint<PickEntries<MergeParams<T>>>
+type BreakpointsInferred<T extends CreateBreakpointParams> = {
+  up: { [P in keyof PickEntries<MergeParams<T>>]: string }
+  down: { [P in keyof PickEntries<MergeParams<T>>]: string }
 }
 
 export interface CreateBreakpointParams {
-  entries?: Record<string, number>
+  entries?: { [key: string]: number }
   unit?: string
   step?: number
+}
+
+export type Breakpoint<T extends { [key: string]: number }> = {
+  up: Breakpoint<T>
+  down: Breakpoint<T>
 }
 
 type Merge<T extends CreateBreakpointParams, Z extends CreateBreakpointParams> = Omit<T, Extract<keyof T, keyof Z>> &
@@ -36,9 +39,7 @@ const defaultBreakpoints = {
   step: 5,
 }
 
-export const createBreakpoint = <O extends CreateBreakpointParams = typeof defaultBreakpoints>(
-  options?: O
-): Breakpoints<O> => {
+export const createBreakpoint = <O extends CreateBreakpointParams>(options?: O): BreakpointsInferred<O> => {
   const _entries = (options && options.entries) || defaultBreakpoints.entries
   const _unit = (options && options.unit) || defaultBreakpoints.unit
   const _step = (options && options.step) || defaultBreakpoints.step
@@ -56,5 +57,5 @@ export const createBreakpoint = <O extends CreateBreakpointParams = typeof defau
     })
   )
 
-  return { up, down } as Breakpoints<O>
+  return { up, down } as BreakpointsInferred<O>
 }

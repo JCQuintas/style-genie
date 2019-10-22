@@ -7,13 +7,17 @@ export interface CreateTransitionParams {
   easing: string
 }
 
-interface Transition {
+export interface Transition {
   (cssProperties?: string[] | string, duration?: number, easing?: string): string
   (cssProperties?: string[] | string, easing?: string): string
 }
 
 export const createTransition = (options?: CreateTransitionParams) => {
-  const transition: Transition = (cssProperties?: string[] | string, duration?: number | string, easing?: string) => {
+  const transition: Transition = (
+    cssProperties?: string[] | string,
+    duration?: number | string,
+    easing?: string
+  ): string => {
     const isDurationString = typeof duration === 'string'
     const _duration = isDurationString
       ? (options && options.duration) || DEFAULT_DURATION
