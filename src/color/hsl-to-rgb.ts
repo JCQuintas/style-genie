@@ -18,7 +18,7 @@ const HSLToRGB = ([h, s, l]: ColorArray): ColorArray => {
   const _s = s > 1 ? s / 100 : s
   const _l = l > 1 ? l / 100 : l
 
-  if (s == 0) {
+  if (_s == 0) {
     r = g = b = _l // achromatic
   } else {
     const q = _l < 0.5 ? _l * (1 + _s) : _l + _s - _l * _s
@@ -36,6 +36,6 @@ export const getArrayFromHSLString = (color: string): ColorArray =>
     .replace(HSLRegex, '')
     .replace(ColorEndRegex, '')
     .replace(/%/g, '')
-    .split(color.includes(',') ? ',' : ' ')
+    .split(',')
     .slice(0, 3)
     .map(v => parseInt(v, 10)) as ColorArray)

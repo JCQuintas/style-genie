@@ -23,8 +23,8 @@ const manipulate = (colorArray: ColorArray) => (options: ManipulateParams) => {
   const h = applyHueShift(hsl[0], hueShift)
   const s = applyTransform(hsl[1], saturate)
   const l = applyTransform(hsl[2], illuminate)
-  const o = typeof opacity === 'number' ? opacity : 1
-  return `hsla(${h}, ${s}%, ${l}%, ${o})`
+  const o = typeof opacity === 'number' ? Math.min(Math.max(opacity, 0), 1) : 1
+  return `hsla(${Math.round(h)}, ${Math.round(s)}%, ${Math.round(l)}%, ${o})`
 }
 
 const getColorArray = (color: ColorInput): ColorArray => {
@@ -41,14 +41,14 @@ export type CreateColorParams = ColorInput
 export type Color = {
   color: string
   manipulate: Manipulate
-  hexColor: string
+  hex: string
 }
 
 export const createColor = (color: CreateColorParams) => {
   const colorArray = getColorArray(color)
   return {
-    color: `rgba(${colorArray.join(',')},1)`,
+    color: `rgba(${colorArray.join(', ')}, 1)`,
     manipulate: manipulate(colorArray),
-    hexColor: `#${colorArray.map(v => `0${v.toString(16)}`.slice(-2)).join('')}`,
+    hex: `#${colorArray.map(v => `0${v.toString(16)}`.slice(-2)).join('')}`,
   } as Color
 }

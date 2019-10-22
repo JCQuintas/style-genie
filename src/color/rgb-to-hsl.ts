@@ -25,8 +25,8 @@ export const RGBToHSLArray = (color: ColorArray) => {
 
   s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
 
-  s = +(s * 100).toFixed(1)
-  l = +(l * 100).toFixed(1)
+  s = parseFloat((s * 100).toFixed(1))
+  l = parseFloat((l * 100).toFixed(1))
 
   return [h, s, l]
 }
