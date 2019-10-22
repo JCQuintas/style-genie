@@ -5,6 +5,7 @@ export interface CreateSpacingParams {
 }
 
 export interface Spacing {
+  (asNumber: true): number
   (spacing?: number, asNumber?: false): string
   (spacing: number, asNumber: true): number
   (vertical: number, horizontal: number): string
@@ -13,13 +14,13 @@ export interface Spacing {
 }
 
 export const createSpacing = (options?: CreateSpacingParams) => {
-  const spacing = (arg1?: number, arg2?: number | boolean, arg3?: number, arg4?: number): string | number => {
+  const spacing = (arg1?: number | boolean, arg2?: number | boolean, arg3?: number, arg4?: number): string | number => {
     const calculate = (numberString: string) =>
       `${parseFloat(numberString) * ((options && options.increment) || DEFAULT_INCREMENT)}px`
 
     const a = typeof arg1 === 'number' ? `${arg1}` : '1'
 
-    const returnNumber = typeof arg2 === 'boolean' && arg2
+    const returnNumber = (typeof arg2 === 'boolean' && arg2) || (typeof arg1 === 'boolean' && arg1)
 
     if (returnNumber) return parseFloat(calculate(a).slice(0, -2))
 

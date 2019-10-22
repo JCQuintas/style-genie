@@ -3,8 +3,8 @@ const DEFAULT_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)'
 const DEFAULT_CSS_PROP = 'all'
 
 export interface CreateTransitionParams {
-  duration: number
-  easing: string
+  duration?: number
+  easing?: string
 }
 
 export interface Transition {
@@ -21,7 +21,7 @@ export const createTransition = (options?: CreateTransitionParams) => {
     const isDurationString = typeof duration === 'string'
     const _duration = isDurationString
       ? (options && options.duration) || DEFAULT_DURATION
-      : duration || DEFAULT_DURATION
+      : duration || (options && options.duration) || DEFAULT_DURATION
     const _easing = isDurationString ? duration : easing || (options && options.easing) || DEFAULT_EASING
     const _cssProperties = cssProperties || DEFAULT_CSS_PROP
 
