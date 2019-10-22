@@ -2,16 +2,29 @@ type FilterProperties<T, P> = { [K in keyof T]: K extends P ? K : never }[keyof 
 
 type PickEntries<T> = T[FilterProperties<T, 'entries'>]
 
-type Breakpoint<T> = { [P in keyof T]: string }
+type Breakpoint<T extends CreateBreakpointParams['entries']> = { [P in keyof T]: string }
 
-type Breakpoints<T> = {
-  up: Breakpoint<T>
-  down: Breakpoint<T>
+type Breakpoints<T extends CreateBreakpointParams> = {
+  up: Breakpoint<PickEntries<MergeParams<T>>>
+  down: Breakpoint<PickEntries<MergeParams<T>>>
 }
 
-type Entries<T> = { [K in keyof T]: number }
+export interface CreateBreakpointParams {
+  entries?: Record<string, number>
+  unit?: string
+  step?: number
+}
 
-export const defaultBreakpointParams = {
+type Merge<T extends CreateBreakpointParams, Z extends CreateBreakpointParams> = Omit<T, Extract<keyof T, keyof Z>> &
+  Omit<Z, Exclude<keyof Z, keyof T>>
+
+type MergeParams<T extends CreateBreakpointParams = {}> = T['entries'] extends undefined
+  ? typeof defaultBreakpoints
+  : keyof T['entries'] extends undefined
+  ? typeof defaultBreakpoints
+  : Merge<typeof defaultBreakpoints, T>
+
+const defaultBreakpoints = {
   entries: {
     xs: 0,
     sm: 600,
@@ -23,14 +36,12 @@ export const defaultBreakpointParams = {
   step: 5,
 }
 
-export const breakpoint = <E = PickEntries<typeof defaultBreakpointParams>>(
-  entries?: Entries<E>,
-  unit?: string,
-  step?: number
-): Breakpoints<E> => {
-  const _entries = entries || (defaultBreakpointParams.entries as PickEntries<typeof defaultBreakpointParams>)
-  const _unit = unit || defaultBreakpointParams.unit
-  const _step = step || defaultBreakpointParams.step
+export const createBreakpoint = <O extends CreateBreakpointParams = typeof defaultBreakpoints>(
+  options?: O
+): Breakpoints<O> => {
+  const _entries = (options && options.entries) || defaultBreakpoints.entries
+  const _unit = (options && options.unit) || defaultBreakpoints.unit
+  const _step = (options && options.step) || defaultBreakpoints.step
   const keys = Object.keys(_entries)
 
   const up = Object.fromEntries(
@@ -41,15 +52,9 @@ export const breakpoint = <E = PickEntries<typeof defaultBreakpointParams>>(
     Object.keys(_entries).map((key, i) => {
       const endIndex = i + 1
       if (endIndex === keys.length) return [key, Object.values(up)[0]]
-      return [key, `@media (max-width:${_entries[keys[endIndex] as keyof typeof entries] - _step / 100}${_unit})`]
+      return [key, `@media (max-width:${_entries[keys[endIndex] as keyof typeof _entries] - _step / 100}${_unit})`]
     })
   )
 
-  return { up, down } as Breakpoints<E>
+  return { up, down } as Breakpoints<O>
 }
-
-breakpoint().down.lg
-// breakpoint('em').down.lg
-breakpoint({
-  a: 1,
-}).down.a

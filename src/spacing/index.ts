@@ -1,25 +1,36 @@
 const DEFAULT_INCREMENT = 8
 
-export interface SpacingParams {
+export interface CreateSpacingParams {
   increment?: number
 }
 
-export const spacing = (options?: SpacingParams) => (...args: any[]): string | number => {
-  const r = (numberString: string) =>
-    `${parseFloat(numberString) * ((options && options.increment) || DEFAULT_INCREMENT)}px`
+interface Spacing {
+  (spacing?: number, asNumber?: false): string
+  (spacing: number, asNumber: true): number
+  (vertical: number, horizontal: number): string
+  (top: number, horizontal: number, bottom: number): string
+  (top: number, right: number, bottom: number, left: number): string
+}
 
-  const a = typeof args[0] === 'number' ? `${args[0]}` : '1'
+export const createSpacing = (options?: CreateSpacingParams) => {
+  const spacing = (arg1?: number, arg2?: number | boolean, arg3?: number, arg4?: number): string | number => {
+    const r = (numberString: string) =>
+      `${parseFloat(numberString) * ((options && options.increment) || DEFAULT_INCREMENT)}px`
 
-  const returnNumber = typeof args[1] === 'boolean' && args[1]
+    const a = typeof arg1 === 'number' ? `${arg1}` : '1'
 
-  if (returnNumber) return parseFloat(r(a).slice(0, -2))
+    const returnNumber = typeof arg2 === 'boolean' && arg2
 
-  const b = typeof args[1] === 'number' ? `${args[1]}` : undefined
-  const c = typeof args[2] === 'number' ? `${args[2]}` : undefined
-  const d = typeof args[3] === 'number' ? `${args[3]}` : undefined
+    if (returnNumber) return parseFloat(r(a).slice(0, -2))
 
-  if (a && b && c && d) return `${r(a)} ${r(b)} ${r(c)} ${r(d)}`
-  if (a && b && c) return `${r(a)} ${r(b)} ${r(c)}`
-  if (a && b) return `${r(a)} ${r(b)}`
-  return `${r(a)}`
+    const b = typeof arg2 === 'number' ? `${arg2}` : undefined
+    const c = typeof arg3 === 'number' ? `${arg3}` : undefined
+    const d = typeof arg4 === 'number' ? `${arg4}` : undefined
+
+    if (a && b && c && d) return `${r(a)} ${r(b)} ${r(c)} ${r(d)}`
+    if (a && b && c) return `${r(a)} ${r(b)} ${r(c)}`
+    if (a && b) return `${r(a)} ${r(b)}`
+    return `${r(a)}`
+  }
+  return spacing as Spacing
 }

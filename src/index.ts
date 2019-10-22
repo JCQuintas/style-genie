@@ -1,6 +1,15 @@
-import { ColorInput, color } from 'color'
-import { breakpoint, defaultBreakpointParams } from 'breakpoint'
-import { SpacingParams, spacing } from 'spacing'
-import { TransitionParams, transition } from 'transition'
+import { CreateColorParams, createColor } from 'color'
+import { createBreakpoint, CreateBreakpointParams } from 'breakpoint'
+import { CreateSpacingParams, createSpacing } from 'spacing'
+import { CreateTransitionParams, createTransition } from 'transition'
 
-export { breakpoint, defaultBreakpointParams, color, ColorInput, spacing, SpacingParams, transition, TransitionParams }
+export {
+  createBreakpoint,
+  CreateBreakpointParams,
+  createColor,
+  CreateColorParams,
+  createSpacing,
+  CreateSpacingParams,
+  createTransition,
+  CreateTransitionParams,
+}

@@ -6,8 +6,6 @@ import { RGBToHSLArray } from './rgb-to-hsl'
 import { applyHueShift } from './apply-hue-shift'
 import { applyTransform } from './apply-transformation'
 
-export { ColorInput }
-
 interface ManipulateParams {
   hueShift?: number
   illuminate?: number
@@ -34,7 +32,9 @@ const getColorArray = (color: ColorInput): ColorArray => {
   return [0, 0, 0]
 }
 
-export const color = (color: ColorInput) => {
+export type CreateColorParams = ColorInput
+
+export const createColor = (color: CreateColorParams) => {
   const colorArray = getColorArray(color)
   return {
     color: `rgba(${colorArray.join(',')},1)`,
