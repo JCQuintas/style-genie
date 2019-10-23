@@ -1,6 +1,18 @@
-import { CreateBreakpointParams, BreakpointsInferred, Breakpoint } from './types'
+// import { CreateBreakpointParams, BreakpointsInferred, Breakpoint } from './types'
 
-export const defaultBreakpoints = {
+interface DefaultParams {
+  entries: {
+    xs: number
+    sm: number
+    md: number
+    lg: number
+    xl: number
+  }
+  unit: string
+  step: number
+}
+
+const defaultBreakpointOptions: Required<DefaultParams> = {
   entries: {
     xs: 0,
     sm: 600,
@@ -12,15 +24,32 @@ export const defaultBreakpoints = {
   step: 5,
 }
 
-export const createBreakpoint = <O extends CreateBreakpointParams = typeof defaultBreakpoints>(
-  options?: O
-): BreakpointsInferred<O> => {
+interface CreateBreakpointParams {
+  entries: { [key: string]: number }
+  unit: string
+  step: number
+}
+
+type Breakpoint<T extends { [key: string]: number } = DefaultParams['entries']> = {
+  up: { [P in keyof T]: string }
+  down: { [P in keyof T]: string }
+}
+
+type RequiredEntries = Pick<CreateBreakpointParams, 'entries'> & Omit<Partial<CreateBreakpointParams>, 'entries'>
+
+interface CreateBreakpoint {
+  <O extends RequiredEntries>(options: O): Breakpoint<O['entries']>
+  (): Breakpoint
+  (options: Partial<CreateBreakpointParams>): Breakpoint
+}
+
+const createBreakpoint: CreateBreakpoint = (options?: Partial<CreateBreakpointParams>): Breakpoint => {
   // Sort entries ascending by value
-  const _entries = Object.entries((options && options.entries) || defaultBreakpoints.entries).sort(
+  const _entries = Object.entries((options && options.entries) || defaultBreakpointOptions.entries).sort(
     ([_, a], [__, b]) => a - b
   )
-  const _unit = (options && options.unit) || defaultBreakpoints.unit
-  const _step = (options && options.step) || defaultBreakpoints.step
+  const _unit = (options && options.unit) || defaultBreakpointOptions.unit
+  const _step = (options && options.step) || defaultBreakpointOptions.step
 
   const up = _entries.reduce(
     (acc, [key, value]) => ({
@@ -41,7 +70,7 @@ export const createBreakpoint = <O extends CreateBreakpointParams = typeof defau
     }
   }, {})
 
-  return ({ up, down } as unknown) as BreakpointsInferred<O>
+  return ({ up, down } as unknown) as Breakpoint
 }
 
-export { CreateBreakpointParams, Breakpoint }
+export { createBreakpoint, defaultBreakpointOptions, CreateBreakpointParams, Breakpoint, CreateBreakpoint }

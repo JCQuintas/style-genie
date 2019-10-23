@@ -36,19 +36,25 @@ const getColorArray = (color: ColorInput): ColorArray => {
   return [0, 0, 0]
 }
 
-export type CreateColorParams = ColorInput
+type CreateColorParams = ColorInput
 
-export type Color = {
+type Color = {
   color: string
   manipulate: Manipulate
   hex: string
 }
 
-export const createColor = (color: CreateColorParams) => {
+interface CreateColor {
+  (color: CreateColorParams): Color
+}
+
+const createColor: CreateColor = (color: CreateColorParams) => {
   const colorArray = getColorArray(color)
   return {
     color: `rgba(${colorArray.join(', ')}, 1)`,
     manipulate: manipulate(colorArray),
     hex: `#${colorArray.map(v => `0${v.toString(16)}`.slice(-2)).join('')}`,
-  } as Color
+  }
 }
+
+export { createColor, CreateColorParams, Color, CreateColor }
