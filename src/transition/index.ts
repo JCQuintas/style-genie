@@ -1,9 +1,9 @@
-interface CreateTransitionParams {
+interface GenerateTransitionParams {
   duration?: number
   easing?: string
 }
 
-const defaultTransitionOptions: Required<CreateTransitionParams> & { cssProperty: string } = {
+const defaultTransitionOptions: Required<GenerateTransitionParams> & { cssProperty: string } = {
   duration: 250,
   easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
   cssProperty: 'all',
@@ -14,11 +14,11 @@ interface Transition {
   (cssProperties?: string[] | string, easing?: string): string
 }
 
-interface CreateTransition {
-  (options?: CreateTransitionParams): Transition
+interface GenerateTransition {
+  (options?: GenerateTransitionParams): Transition
 }
 
-const createTransition: CreateTransition = (options?: CreateTransitionParams) => {
+const generateTransition: GenerateTransition = (options?: GenerateTransitionParams) => {
   const transition: Transition = (
     cssProperties?: string[] | string,
     duration?: number | string,
@@ -39,4 +39,4 @@ const createTransition: CreateTransition = (options?: CreateTransitionParams) =>
   return transition
 }
 
-export { createTransition, defaultTransitionOptions, CreateTransitionParams, Transition, CreateTransition }
+export { generateTransition, defaultTransitionOptions, GenerateTransitionParams, Transition, GenerateTransition }

@@ -1,42 +1,42 @@
-import { createColor, CreateColorParams, Color, CreateColor } from 'color'
+import { generateColor, GenerateColorParams, Color, GenerateColor } from 'color'
 import {
-  createBreakpoint,
+  generateBreakpoint,
   defaultBreakpointOptions,
-  CreateBreakpointParams,
+  GenerateBreakpointParams,
   Breakpoint,
-  CreateBreakpoint,
+  GenerateBreakpoint,
 } from 'breakpoint'
-import { createSpacing, defaultSpacingOptions, CreateSpacingParams, Spacing, CreateSpacing } from 'spacing'
+import { generateSpacing, defaultSpacingOptions, GenerateSpacingParams, Spacing, GenerateSpacing } from 'spacing'
 import {
-  createTransition,
+  generateTransition,
   defaultTransitionOptions,
-  CreateTransitionParams,
+  GenerateTransitionParams,
   Transition,
-  CreateTransition,
+  GenerateTransition,
 } from 'transition'
 
 export {
   // Color
-  createColor,
-  CreateColorParams,
+  generateColor,
+  GenerateColorParams,
   Color,
-  CreateColor,
+  GenerateColor,
   // Breakpoint
-  createBreakpoint,
+  generateBreakpoint,
   defaultBreakpointOptions,
-  CreateBreakpointParams,
+  GenerateBreakpointParams,
   Breakpoint,
-  CreateBreakpoint,
+  GenerateBreakpoint,
   // Spacing
-  createSpacing,
+  generateSpacing,
   defaultSpacingOptions,
-  CreateSpacingParams,
+  GenerateSpacingParams,
   Spacing,
-  CreateSpacing,
+  GenerateSpacing,
   // Transition
-  createTransition,
+  generateTransition,
   defaultTransitionOptions,
-  CreateTransitionParams,
+  GenerateTransitionParams,
   Transition,
-  CreateTransition,
+  GenerateTransition,
 }

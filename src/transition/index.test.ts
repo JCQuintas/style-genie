@@ -1,14 +1,14 @@
-import { createTransition } from './index'
+import { generateTransition } from './index'
 
 describe('transition', () => {
   it('generates a function with default parameters if no parameters are given', () => {
-    const transition = createTransition()
+    const transition = generateTransition()
     expect(transition).toBeTruthy()
     expect(typeof transition).toBe('function')
   })
 
   it('correctly uses the default parameters', () => {
-    const transition = createTransition()
+    const transition = generateTransition()
 
     expect(transition()).toBe('all 250ms cubic-bezier(0.4, 0, 0.2, 1)')
     expect(transition('opacity')).toBe('opacity 250ms cubic-bezier(0.4, 0, 0.2, 1)')
@@ -20,9 +20,9 @@ describe('transition', () => {
   })
 
   it('generates a function with the given options', () => {
-    const duration = createTransition({ duration: 500 })
-    const easing = createTransition({ easing: 'ease-out' })
-    const both = createTransition({ duration: 1000, easing: 'linear' })
+    const duration = generateTransition({ duration: 500 })
+    const easing = generateTransition({ easing: 'ease-out' })
+    const both = generateTransition({ duration: 1000, easing: 'linear' })
     expect(duration).toBeTruthy()
     expect(easing).toBeTruthy()
     expect(both).toBeTruthy()
@@ -32,7 +32,7 @@ describe('transition', () => {
   })
 
   it('correctly uses the given duration parameter', () => {
-    const transition = createTransition({ duration: 500 })
+    const transition = generateTransition({ duration: 500 })
 
     expect(transition()).toBe('all 500ms cubic-bezier(0.4, 0, 0.2, 1)')
     expect(transition('opacity')).toBe('opacity 500ms cubic-bezier(0.4, 0, 0.2, 1)')
@@ -44,7 +44,7 @@ describe('transition', () => {
   })
 
   it('correctly uses the given easing parameter', () => {
-    const transition = createTransition({ easing: 'ease-out' })
+    const transition = generateTransition({ easing: 'ease-out' })
 
     expect(transition()).toBe('all 250ms ease-out')
     expect(transition('opacity')).toBe('opacity 250ms ease-out')
@@ -54,7 +54,7 @@ describe('transition', () => {
   })
 
   it('correctly uses both given easing parameter', () => {
-    const transition = createTransition({ duration: 1000, easing: 'linear' })
+    const transition = generateTransition({ duration: 1000, easing: 'linear' })
 
     expect(transition()).toBe('all 1000ms linear')
     expect(transition('opacity')).toBe('opacity 1000ms linear')

@@ -1,14 +1,14 @@
-import { createSpacing } from './index'
+import { generateSpacing } from './index'
 
 describe('spacing', () => {
   it('generates a function with default parameters if no parameters are given', () => {
-    const spacing = createSpacing()
+    const spacing = generateSpacing()
     expect(spacing).toBeTruthy()
     expect(typeof spacing).toBe('function')
   })
 
   it('correctly uses the default parameters', () => {
-    const spacing = createSpacing()
+    const spacing = generateSpacing()
 
     expect(spacing()).toBe('8px')
     expect(spacing(true)).toBe(8)
@@ -20,13 +20,13 @@ describe('spacing', () => {
   })
 
   it('generates a function with the given options', () => {
-    const spacing = createSpacing({ increment: 10 })
+    const spacing = generateSpacing({ increment: 10 })
     expect(spacing).toBeTruthy()
     expect(typeof spacing).toBe('function')
   })
 
   it('correctly uses the given options', () => {
-    const spacing = createSpacing({ increment: 10 })
+    const spacing = generateSpacing({ increment: 10 })
 
     expect(spacing()).toBe('10px')
     expect(spacing(true)).toBe(10)

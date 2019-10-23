@@ -1,8 +1,8 @@
-interface CreateSpacingParams {
+interface GenerateSpacingParams {
   increment?: number
 }
 
-const defaultSpacingOptions: Required<CreateSpacingParams> = {
+const defaultSpacingOptions: Required<GenerateSpacingParams> = {
   increment: 8,
 }
 
@@ -15,11 +15,11 @@ interface Spacing {
   (top: number, right: number, bottom: number, left: number): string
 }
 
-interface CreateSpacing {
-  (options?: CreateSpacingParams): Spacing
+interface GenerateSpacing {
+  (options?: GenerateSpacingParams): Spacing
 }
 
-const createSpacing: CreateSpacing = (options?: CreateSpacingParams) => {
+const generateSpacing: GenerateSpacing = (options?: GenerateSpacingParams) => {
   const spacing = (arg1?: number | boolean, arg2?: number | boolean, arg3?: number, arg4?: number): string | number => {
     const calculate = (numberString: string) =>
       `${parseFloat(numberString) * ((options && options.increment) || defaultSpacingOptions.increment)}px`
@@ -42,4 +42,4 @@ const createSpacing: CreateSpacing = (options?: CreateSpacingParams) => {
   return spacing as Spacing
 }
 
-export { createSpacing, defaultSpacingOptions, CreateSpacingParams, Spacing, CreateSpacing }
+export { generateSpacing, defaultSpacingOptions, GenerateSpacingParams, Spacing, GenerateSpacing }

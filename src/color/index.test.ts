@@ -1,8 +1,8 @@
-import { createColor } from './index'
+import { generateColor } from './index'
 
 describe('breakpoint', () => {
   it('generates black from invalid input', () => {
-    const color = createColor('255')
+    const color = generateColor('255')
 
     expect(color).toMatchObject({
       color: 'rgba(0, 0, 0, 1)',
@@ -11,7 +11,7 @@ describe('breakpoint', () => {
   })
 
   it('generates a color object from number input', () => {
-    const color = createColor(255)
+    const color = generateColor(255)
 
     expect(color).toMatchObject({
       color: 'rgba(255, 255, 255, 1)',
@@ -20,7 +20,7 @@ describe('breakpoint', () => {
   })
 
   it('generates a color object from number array input', () => {
-    const color = createColor([0, 0, 255])
+    const color = generateColor([0, 0, 255])
 
     expect(color).toMatchObject({
       color: 'rgba(0, 0, 255, 1)',
@@ -29,7 +29,7 @@ describe('breakpoint', () => {
   })
 
   it('generates a color object from hex color input', () => {
-    const color = createColor('#00FF00')
+    const color = generateColor('#00FF00')
 
     expect(color).toMatchObject({
       color: 'rgba(0, 255, 0, 1)',
@@ -38,7 +38,7 @@ describe('breakpoint', () => {
   })
 
   it('generates a color object from short hex color input', () => {
-    const color = createColor('#505')
+    const color = generateColor('#505')
 
     expect(color).toMatchObject({
       color: 'rgba(85, 0, 85, 1)',
@@ -47,7 +47,7 @@ describe('breakpoint', () => {
   })
 
   it('generates a color object from rgb color input', () => {
-    const color = createColor('rgb(255, 0, 0)')
+    const color = generateColor('rgb(255, 0, 0)')
 
     expect(color).toMatchObject({
       color: 'rgba(255, 0, 0, 1)',
@@ -56,7 +56,7 @@ describe('breakpoint', () => {
   })
 
   it('generates a color object from rgba color input', () => {
-    const color = createColor('rgba(255,255,0,1)')
+    const color = generateColor('rgba(255,255,0,1)')
 
     expect(color).toMatchObject({
       color: 'rgba(255, 255, 0, 1)',
@@ -65,7 +65,7 @@ describe('breakpoint', () => {
   })
 
   it('generates a color object from hsl color input', () => {
-    const color = createColor('hsl(255,50%,50%)')
+    const color = generateColor('hsl(255,50%,50%)')
 
     expect(color).toMatchObject({
       color: 'rgba(96, 64, 191, 1)',
@@ -74,7 +74,7 @@ describe('breakpoint', () => {
   })
 
   it('generates a color object from hsla color input', () => {
-    const color = createColor('hsla(10, 50%, 50%, 1)')
+    const color = generateColor('hsla(10, 50%, 50%, 1)')
 
     expect(color).toMatchObject({
       color: 'rgba(191, 85, 64, 1)',
@@ -83,7 +83,7 @@ describe('breakpoint', () => {
   })
 
   it('generates a color object from achromatic hsla color input', () => {
-    const color = createColor('hsla(10, 0%, 50%, 1)')
+    const color = generateColor('hsla(10, 0%, 50%, 1)')
 
     expect(color).toMatchObject({
       color: 'rgba(128, 128, 128, 1)',
@@ -92,7 +92,7 @@ describe('breakpoint', () => {
   })
 
   it('manipulate function works correctly when hueShift is used', () => {
-    const color = createColor('#ff9988')
+    const color = generateColor('#ff9988')
 
     expect(color).toMatchObject({
       color: 'rgba(255, 153, 136, 1)',
@@ -105,7 +105,7 @@ describe('breakpoint', () => {
   })
 
   it('manipulate function works correctly when opacity is used', () => {
-    const color = createColor('#9988dd')
+    const color = generateColor('#9988dd')
 
     expect(color).toMatchObject({
       color: 'rgba(153, 136, 221, 1)',
@@ -117,7 +117,7 @@ describe('breakpoint', () => {
   })
 
   it('manipulate function works correctly when illuminate is used', () => {
-    const color = createColor('#7dc1e8')
+    const color = generateColor('#7dc1e8')
 
     expect(color).toMatchObject({
       color: 'rgba(125, 193, 232, 1)',
@@ -134,7 +134,7 @@ describe('breakpoint', () => {
   })
 
   it('manipulate function works correctly when saturate is used', () => {
-    const color = createColor('#40bf5e')
+    const color = generateColor('#40bf5e')
 
     expect(color).toMatchObject({
       color: 'rgba(64, 191, 94, 1)',
@@ -151,7 +151,7 @@ describe('breakpoint', () => {
   })
 
   it('manipulate function works correctly when saturate illuminate and hueShift are used', () => {
-    const color = createColor('#bf40bf')
+    const color = generateColor('#bf40bf')
 
     expect(color).toMatchObject({
       color: 'rgba(191, 64, 191, 1)',
@@ -166,8 +166,8 @@ describe('breakpoint', () => {
   })
 
   it('manipulate can work on white and black', () => {
-    const white = createColor('hsl(0, 0%, 100%)')
-    const black = createColor('hsl(0, 0%, 0%)')
+    const white = generateColor('hsl(0, 0%, 100%)')
+    const black = generateColor('hsl(0, 0%, 0%)')
 
     expect(white).toMatchObject({
       color: 'rgba(255, 255, 255, 1)',
@@ -184,8 +184,8 @@ describe('breakpoint', () => {
   })
 
   it('test hsb warm gray variations', () => {
-    const lightWarmGray = createColor('hsl(0, 10%, 75%)')
-    const darkWarmGray = createColor('hsl(0, 10%, 25%)')
+    const lightWarmGray = generateColor('hsl(0, 10%, 75%)')
+    const darkWarmGray = generateColor('hsl(0, 10%, 25%)')
 
     expect(lightWarmGray).toMatchObject({
       color: 'rgba(198, 185, 185, 1)',
@@ -202,44 +202,44 @@ describe('breakpoint', () => {
   })
 
   it('test hsb hue variations', () => {
-    expect(createColor('hsl(0, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(0, 50%, 50%, 0.1)')
-    expect(createColor('hsl(10, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(10, 50%, 50%, 0.1)')
-    expect(createColor('hsl(20, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(20, 50%, 50%, 0.1)')
-    expect(createColor('hsl(30, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(30, 50%, 50%, 0.1)')
-    expect(createColor('hsl(40, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(40, 50%, 50%, 0.1)')
-    expect(createColor('hsl(50, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(50, 50%, 50%, 0.1)')
-    expect(createColor('hsl(60, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(60, 50%, 50%, 0.1)')
-    expect(createColor('hsl(70, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(70, 50%, 50%, 0.1)')
-    expect(createColor('hsl(80, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(80, 50%, 50%, 0.1)')
-    expect(createColor('hsl(90, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(90, 50%, 50%, 0.1)')
-    expect(createColor('hsl(100, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(100, 50%, 50%, 0.1)')
-    expect(createColor('hsl(110, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(110, 50%, 50%, 0.1)')
-    expect(createColor('hsl(120, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(120, 50%, 50%, 0.1)')
-    expect(createColor('hsl(130, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(130, 50%, 50%, 0.1)')
-    expect(createColor('hsl(130, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(130, 50%, 50%, 0.1)')
-    expect(createColor('hsl(140, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(140, 50%, 50%, 0.1)')
-    expect(createColor('hsl(150, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(150, 50%, 50%, 0.1)')
-    expect(createColor('hsl(160, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(160, 50%, 50%, 0.1)')
-    expect(createColor('hsl(170, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(170, 50%, 50%, 0.1)')
-    expect(createColor('hsl(180, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(180, 50%, 50%, 0.1)')
-    expect(createColor('hsl(190, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(190, 50%, 50%, 0.1)')
-    expect(createColor('hsl(200, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(200, 50%, 50%, 0.1)')
-    expect(createColor('hsl(210, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(210, 50%, 50%, 0.1)')
-    expect(createColor('hsl(220, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(220, 50%, 50%, 0.1)')
-    expect(createColor('hsl(230, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(230, 50%, 50%, 0.1)')
-    expect(createColor('hsl(240, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(240, 50%, 50%, 0.1)')
-    expect(createColor('hsl(250, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(250, 50%, 50%, 0.1)')
-    expect(createColor('hsl(260, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(260, 50%, 50%, 0.1)')
-    expect(createColor('hsl(270, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(270, 50%, 50%, 0.1)')
-    expect(createColor('hsl(280, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(280, 50%, 50%, 0.1)')
-    expect(createColor('hsl(290, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(290, 50%, 50%, 0.1)')
-    expect(createColor('hsl(300, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(300, 50%, 50%, 0.1)')
-    expect(createColor('hsl(310, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(310, 50%, 50%, 0.1)')
-    expect(createColor('hsl(320, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(320, 50%, 50%, 0.1)')
-    expect(createColor('hsl(330, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(330, 50%, 50%, 0.1)')
-    expect(createColor('hsl(330, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(330, 50%, 50%, 0.1)')
-    expect(createColor('hsl(340, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(340, 50%, 50%, 0.1)')
-    expect(createColor('hsl(350, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(350, 50%, 50%, 0.1)')
-    expect(createColor('hsl(360, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(0, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(0, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(0, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(10, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(10, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(20, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(20, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(30, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(30, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(40, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(40, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(50, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(50, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(60, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(60, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(70, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(70, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(80, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(80, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(90, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(90, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(100, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(100, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(110, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(110, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(120, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(120, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(130, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(130, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(130, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(130, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(140, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(140, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(150, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(150, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(160, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(160, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(170, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(170, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(180, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(180, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(190, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(190, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(200, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(200, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(210, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(210, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(220, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(220, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(230, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(230, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(240, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(240, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(250, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(250, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(260, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(260, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(270, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(270, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(280, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(280, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(290, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(290, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(300, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(300, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(310, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(310, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(320, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(320, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(330, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(330, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(330, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(330, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(340, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(340, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(350, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(350, 50%, 50%, 0.1)')
+    expect(generateColor('hsl(360, 50%, 50%)').manipulate({ opacity: 0.1 })).toBe('hsla(0, 50%, 50%, 0.1)')
   })
 })

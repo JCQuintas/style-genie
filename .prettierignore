@@ -5,7 +5,6 @@
 
 # testing
 /coverage
-projectSchema.json
 
 # production
 /build
@@ -16,7 +15,6 @@ projectSchema.json
 .env.development.local
 .env.test.local
 .env.production.local
-tsconfig.json
 
 npm-debug.log*
 yarn-debug.log*
@@ -27,3 +25,4 @@ yarn-error.log*
 
 # Build process
 /temp
+/pkg

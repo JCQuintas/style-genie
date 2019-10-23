@@ -36,7 +36,7 @@ const getColorArray = (color: ColorInput): ColorArray => {
   return [0, 0, 0]
 }
 
-type CreateColorParams = ColorInput
+type GenerateColorParams = ColorInput
 
 type Color = {
   color: string
@@ -44,11 +44,11 @@ type Color = {
   hex: string
 }
 
-interface CreateColor {
-  (color: CreateColorParams): Color
+interface GenerateColor {
+  (color: GenerateColorParams): Color
 }
 
-const createColor: CreateColor = (color: CreateColorParams) => {
+const generateColor: GenerateColor = (color: GenerateColorParams) => {
   const colorArray = getColorArray(color)
   return {
     color: `rgba(${colorArray.join(', ')}, 1)`,
@@ -57,4 +57,4 @@ const createColor: CreateColor = (color: CreateColorParams) => {
   }
 }
 
-export { createColor, CreateColorParams, Color, CreateColor }
+export { generateColor, GenerateColorParams, Color, GenerateColor }
