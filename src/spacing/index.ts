@@ -85,7 +85,8 @@ interface Spacing {
  */
 interface GenerateSpacing {
   /**
-   * Generates the spacing function. It can be used to easily multiply numbers into pixels.
+   * Generates the spacing function.
+   * The spacing function can be used to easily multiply numbers into pixels.
    *
    * @param options - __options__ object to initialize the function with.
    * @returns the spacing function.
@@ -93,6 +94,10 @@ interface GenerateSpacing {
   (options?: GenerateSpacingParams): Spacing
 }
 
+/**
+ * Generates the spacing function.
+ * The spacing function can be used to easily multiply numbers into pixels.
+ */
 const generateSpacing: GenerateSpacing = (options?: GenerateSpacingParams) => {
   const spacing = (arg1?: number | boolean, arg2?: number | boolean, arg3?: number, arg4?: number): string | number => {
     const _increment = (options && options.increment) || defaultSpacingOptions.increment

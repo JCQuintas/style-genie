@@ -42,22 +42,14 @@ type Breakpoint<T extends { [key: string]: number } = typeof defaultBreakpointOp
 interface GenerateBreakpoint {
   /**
    * Generate the breakpoints object based on the default breakpoints.
-   *
-   * ```ts
-   * breakpoints = {
-   *   xs: 0,
-   *   sm: 600,
-   *   md: 960,
-   *   lg: 1280,
-   *   xl: 1920
-   * }
-   * ```
+   * The breakpoints object has media query strings generated based on the input object values.
    *
    * @returns the breakpoints object with every value pre-calculated.
    */
   (): Breakpoint
   /**
    * Generate the breakpoints object based on the given input.
+   * The breakpoints object has media query strings generated based on the input object values.
    *
    * ```ts
    * breakpoints = {
@@ -73,6 +65,7 @@ interface GenerateBreakpoint {
 
 /**
  * Generate the breakpoints object.
+ * The breakpoints object has media query strings generated based on the input object values.
  */
 const generateBreakpoint: GenerateBreakpoint = (options?: GenerateBreakpointParams) => {
   // Sort breakpoints ascending by value
