@@ -7,26 +7,32 @@ const defaultBreakpointOptions = {
     xl: 1920,
   },
   unit: 'px',
-  step: 5,
+  step: 5 / 100,
 }
 
 /**
  * The typing for the __params__ of the `generateBreakpoint` function.
  */
 interface GenerateBreakpointParams {
-  /** `breakpoints` is an object of number values used to define the breakpoints. */
+  /**
+   * `breakpoints` is an object of number values used to define the breakpoints.
+   */
   breakpoints: { [key: string]: number }
 }
 
 /**
- * The typing for __return__ value of the `generateBreakpoint` function.
+ * The typing for the __return__ value of the `generateBreakpoint` function.
  *
  * @typeparam T is _optional_ and is used to define the shape of `up` and `down`
  */
 type Breakpoint<T extends { [key: string]: number } = typeof defaultBreakpointOptions['breakpoints']> = {
-  /** `up` is the __min-width__ in which the breakpoint should take effect `@media (min-width: --px)`. */
+  /**
+   * `up` is the __min-width__ in which the breakpoint should take effect `@media (min-width: --px)`.
+   */
   up: { [P in keyof T]: string }
-  /** `down` is the __max-width__ in which the breakpoint should take effect `@media (max-width: --px)`. */
+  /**
+   * `down` is the __max-width__ in which the breakpoint should take effect `@media (max-width: --px)`.
+   */
   down: { [P in keyof T]: string }
 }
 
@@ -88,10 +94,10 @@ const generateBreakpoint: GenerateBreakpoint = (options?: GenerateBreakpointPara
     const endIndex = i + 1
     // Biggest size is just min-width: min-size
     if (endIndex === _breakpoints.length) return { ...acc, [key]: Object.values(up)[0] }
-    // Value of each key is index + 1 - step(5) / 100
+    // Value of each key is index + 1 - 0.05
     return {
       ...acc,
-      [key]: `@media (max-width: ${_breakpoints[endIndex][1] - _step / 100}${_unit})`,
+      [key]: `@media (max-width: ${_breakpoints[endIndex][1] - _step}${_unit})`,
     }
   }, {})
 
