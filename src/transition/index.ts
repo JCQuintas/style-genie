@@ -1,17 +1,21 @@
+import { SvgPropertiesHyphen, StandardPropertiesHyphen } from 'csstype'
+
+type PropertiesHyphen = keyof StandardPropertiesHyphen | keyof SvgPropertiesHyphen
+
 interface GenerateTransitionParams {
   duration?: number
   easing?: string
 }
 
-const defaultTransitionOptions: Required<GenerateTransitionParams> & { cssProperty: string } = {
+const defaultTransitionOptions: Required<GenerateTransitionParams> & { cssProperty: PropertiesHyphen } = {
   duration: 250,
   easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
   cssProperty: 'all',
 }
 
 interface Transition {
-  (cssProperties?: string[] | string, duration?: number, easing?: string): string
-  (cssProperties?: string[] | string, easing?: string): string
+  (cssProperties?: PropertiesHyphen[] | PropertiesHyphen, duration?: number, easing?: string): string
+  (cssProperties?: PropertiesHyphen[] | PropertiesHyphen, easing?: string): string
 }
 
 interface GenerateTransition {
@@ -20,7 +24,7 @@ interface GenerateTransition {
 
 const generateTransition: GenerateTransition = (options?: GenerateTransitionParams) => {
   const transition: Transition = (
-    cssProperties?: string[] | string,
+    cssProperties?: PropertiesHyphen[] | PropertiesHyphen,
     duration?: number | string,
     easing?: string
   ): string => {

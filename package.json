@@ -48,5 +48,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "csstype": "^2.6.7"
   }
 }
