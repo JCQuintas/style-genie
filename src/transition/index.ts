@@ -2,9 +2,22 @@ import { SvgPropertiesHyphen, StandardPropertiesHyphen } from 'csstype'
 
 type PropertiesHyphen = keyof StandardPropertiesHyphen | keyof SvgPropertiesHyphen
 
+type TransitionTimingFunction =
+  | 'ease'
+  | 'ease-in'
+  | 'ease-out'
+  | 'ease-in-out'
+  | 'linear'
+  | 'step-start'
+  | 'step-end'
+  | 'inherit'
+  | 'initial'
+  | 'unset'
+  | (string & {})
+
 interface GenerateTransitionParams {
   duration?: number
-  easing?: string
+  easing?: TransitionTimingFunction
 }
 
 const defaultTransitionOptions: Required<GenerateTransitionParams> & { cssProperty: PropertiesHyphen } = {
@@ -14,8 +27,8 @@ const defaultTransitionOptions: Required<GenerateTransitionParams> & { cssProper
 }
 
 interface Transition {
-  (cssProperties?: PropertiesHyphen[] | PropertiesHyphen, duration?: number, easing?: string): string
-  (cssProperties?: PropertiesHyphen[] | PropertiesHyphen, easing?: string): string
+  (cssProperties?: PropertiesHyphen[] | PropertiesHyphen, duration?: number, easing?: TransitionTimingFunction): string
+  (cssProperties?: PropertiesHyphen[] | PropertiesHyphen, easing?: TransitionTimingFunction): string
 }
 
 interface GenerateTransition {
@@ -25,8 +38,8 @@ interface GenerateTransition {
 const generateTransition: GenerateTransition = (options?: GenerateTransitionParams) => {
   const transition: Transition = (
     cssProperties?: PropertiesHyphen[] | PropertiesHyphen,
-    duration?: number | string,
-    easing?: string
+    duration?: number | TransitionTimingFunction,
+    easing?: TransitionTimingFunction
   ): string => {
     const isDurationString = typeof duration === 'string'
     const _duration = isDurationString
