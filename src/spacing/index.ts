@@ -5,7 +5,7 @@ const defaultSpacingOptions: Required<GenerateSpacingParams> = {
 }
 
 /**
- * The typing for the __params__ of the `generateBreakpoint` function.
+ * The typing for the __params__ of the `generateSpacing` function.
  */
 interface GenerateSpacingParams {
   /**
@@ -40,7 +40,7 @@ interface Spacing {
    *
    * @param spacing - __spacing__ is the value used to multiply increment.
    * - Default: `1`
-   * @returns a unit string `'--px'`
+   * @returns a unit string `'<spacing>px'`
    */
   (spacing?: number, asNumber?: false): string
   /**
@@ -56,7 +56,7 @@ interface Spacing {
    *
    * @param vertical - __vertical__ is the value used define the vertical axis unit.
    * @param horizontal - __horizontal__ is the value used define the horizontal axis unit.
-   * @returns a unit string `'--px --px'`
+   * @returns a unit string `'<vertical>px <horizontal>px'`
    */
   (vertical: number, horizontal: number): string
   /**
@@ -65,7 +65,7 @@ interface Spacing {
    * @param top - __top__ is the value used define the top size unit.
    * @param horizontal - __horizontal__ is the value used define the horizontal axis unit.
    * @param bottom - __bottom__ is the value used define the bottom size unit.
-   * @returns a unit string `'--px --px --px'`
+   * @returns a unit string `'<top>px <horizontal>px <bottom>px'`
    */
   (top: number, horizontal: number, bottom: number): string
   /**
@@ -75,7 +75,7 @@ interface Spacing {
    * @param right - __right__ is the value used define the right side unit.
    * @param bottom - __bottom__ is the value used define the bottom side unit.
    * @param left - __left__ is the value used define the left side unit.
-   * @returns a unit string `'--px --px --px --px'`
+   * @returns a unit string `'<top>px <right>px <bottom>px <left>px'`
    */
   (top: number, right: number, bottom: number, left: number): string
 }
