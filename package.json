@@ -2,16 +2,9 @@
   "name": "style-genie",
   "version": "0.0.1",
   "description": "A style utility for css-in-js frameworks.",
-  "@pika/pack": {
-    "pipeline": [
-      [
-        "@pika/plugin-ts-standard-pkg"
-      ]
-    ]
-  },
   "scripts": {
     "build": "pika build",
-    "test": "jest --watch",
+    "test": "jest",
     "coverage": "jest --coverage",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "version": "npm run build",
@@ -50,6 +43,19 @@
     "*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write",
       "git add"
+    ]
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-node"
+      ],
+      [
+        "@pika/plugin-build-web"
+      ]
     ]
   }
 }
