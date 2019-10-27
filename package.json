@@ -14,7 +14,8 @@
     "test": "jest --watch",
     "coverage": "jest --coverage",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "version": "npm run build"
+    "version": "npm run build",
+    "publish": "pika publish"
   },
   "keywords": [
     "css-in-js",
