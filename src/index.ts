@@ -1,4 +1,4 @@
-import { generateColor, GenerateColorParams, Color, GenerateColor } from 'color'
+import { generateColor, defaultColorOptions, GenerateColorParams, Color, GenerateColor } from 'color'
 import {
   generateBreakpoint,
   defaultBreakpointOptions,
@@ -18,6 +18,7 @@ import {
 export {
   // Color
   generateColor,
+  defaultColorOptions,
   GenerateColorParams,
   Color,
   GenerateColor,

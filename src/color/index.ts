@@ -2,7 +2,7 @@ import { ColorArray, RGBRegex, HSLRegex, ColorInput, ColorFormat } from './const
 import { RGBToRGBArray } from './rgb-to-rgb'
 import { HSLtoRGBArray } from './hsl-to-rgb'
 import { hexToRGBArray } from './hex-to-rgb'
-import { Manipulate, manipulate } from './manipulate'
+import { Manipulate, generateManipulate } from './manipulate'
 import { colorFormatter } from './color-formatter'
 
 const getColorArray = (color: ColorInput): ColorArray => {
@@ -27,7 +27,17 @@ const getColorArray = (color: ColorInput): ColorArray => {
 
 const isOptionsObject = (value: any): value is GenerateColorParams => value && value.color
 
-const defaultColorOptions: Required<GenerateColorParams> = {
+interface FormatFunction {
+  /**
+   * A function to format the color output.
+   *
+   * @param format - __format__ the color format.
+   * @returns a formatted color string with the transformations.
+   */
+  (format: ColorFormat): string
+}
+
+export const defaultColorOptions: Required<GenerateColorParams> = {
   color: 0,
   format: 'rgba',
 }
@@ -37,20 +47,24 @@ const defaultColorOptions: Required<GenerateColorParams> = {
  */
 interface GenerateColorParams {
   /**
-   * `color` can have one of the following formats
+   * `color` is the base color to be decorated, it can have one of the following formats.
    *
    * ```typescript
-   * - 0
-   * - [0, 0, 0]
-   * - '#000'
-   * - '#000000'
-   * - 'rgb(0, 0, 0)'
-   * - 'rgba(0, 0, 0, 1)'
-   * - 'hsl(0, 0%, 0%)'
-   * - 'hsla(0, 0%, 0%, 1)'
+   * 0 | [0, 0, 0]
+   * '#000' | '#000000' | '#000000FF'
+   * 'rgb(0, 0, 0)' | 'rgba(0, 0, 0, 1)'
+   * 'hsl(0, 0%, 0%)' | 'hsla(0, 0%, 0%, 1)'
    * ```
    */
   color: ColorInput
+  /**
+   * `format` it the default output format of the color.
+   * - Default: `'rgba'`
+   *
+   * ```typescript
+   * 'rgb' | 'rgba' | 'hex' | 'hsl' | 'hsla'
+   * ```
+   */
   format?: ColorFormat
 }
 
@@ -58,13 +72,43 @@ interface GenerateColorParams {
  * The typing for the __return__ value of the `generateColor` function.
  */
 interface Color {
+  /**
+   * The formatted color string.
+   */
   color: string
+  /**
+   * A function to manipulate the properties of the color.
+   *
+   * @returns a formatted color string with the transformations.
+   */
   manipulate: Manipulate
-  format: (format: ColorFormat) => string
+  /**
+   * A function to format the color output.
+   *
+   * @param format - __format__ the color format.
+   * @returns a formatted color string with the transformations.
+   */
+  format: FormatFunction
 }
 
+/**
+ * The typing for the `generateColor` function.
+ */
 interface GenerateColor {
+  /**
+   * Generates a color object.
+   *
+   * @param options - __options__ object to initialize the function with.
+   * @returns the color object.
+   */
   (options: GenerateColorParams): Color
+  /**
+   * Generates a color object.
+   *
+   * @param color - __color__ the color to use when generating the object.
+   * @param format - __format__ the color format the output should use.
+   * @returns the color object.
+   */
   (color: ColorInput, format?: ColorFormat): Color
 }
 
@@ -74,7 +118,7 @@ const generateColor: GenerateColor = (options: GenerateColorParams | ColorInput,
   const colorArray = getColorArray(_color)
   return {
     color: colorFormatter(colorArray, _format),
-    manipulate: manipulate(colorArray, _format),
+    manipulate: generateManipulate(colorArray, _format),
     format: (format: ColorFormat) => colorFormatter(colorArray, format),
   }
 }
