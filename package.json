@@ -8,7 +8,7 @@
     "coverage": "jest --coverage",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "version": "npm run build",
-    "publish": "pika publish"
+    "publish": "npm publish pkg"
   },
   "keywords": [
     "css-in-js",
