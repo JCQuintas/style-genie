@@ -9,7 +9,7 @@ const hue2rgb = (p: number, q: number, t: number) => {
   return p
 }
 
-const HSLToRGB = ([h, s, l]: ColorArray): ColorArray => {
+export const HSLArrayToRGBArray = ([h, s, l, a]: ColorArray): ColorArray => {
   let r = 0
   let g = 0
   let b = 0
@@ -28,14 +28,13 @@ const HSLToRGB = ([h, s, l]: ColorArray): ColorArray => {
     b = hue2rgb(p, q, _h - 1 / 3)
   }
 
-  return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)]
+  return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255), a]
 }
 
-export const getArrayFromHSLString = (color: string): ColorArray =>
-  HSLToRGB(color
+export const HSLtoRGBArray = (color: string): ColorArray =>
+  HSLArrayToRGBArray(color
     .replace(HSLRegex, '')
     .replace(ColorEndRegex, '')
     .replace(/%/g, '')
     .split(',')
-    .slice(0, 3)
-    .map(v => parseInt(v, 10)) as ColorArray)
+    .map(parseFloat) as ColorArray)

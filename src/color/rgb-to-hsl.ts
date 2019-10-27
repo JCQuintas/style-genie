@@ -1,6 +1,6 @@
 import { ColorArray } from './constants'
 
-export const RGBToHSLArray = (color: ColorArray) => {
+export const RGBToHSLArray = (color: ColorArray): ColorArray => {
   const _r = color[0] / 255
   const _g = color[1] / 255
   const _b = color[2] / 255
@@ -28,5 +28,5 @@ export const RGBToHSLArray = (color: ColorArray) => {
   s = parseFloat((s * 100).toFixed(1))
   l = parseFloat((l * 100).toFixed(1))
 
-  return [h, s, l]
+  return [Math.round(h), Math.round(s), Math.round(l), color[3]]
 }
