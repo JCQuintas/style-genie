@@ -2,9 +2,13 @@
 
 A collection of style utilities for css-in-js frameworks.
 
+Made with [typescript](https://github.com/microsoft/TypeScript), which provides support for in-editor documentation.
+
 ## Why?
 
-The idea behind this project is to collect and improve on commonly used and often wanted style utilities. It is heavily influenced by the utilities [material-ui](https://github.com/mui-org/material-ui) have in their theme object.
+The idea behind this project is to collect and improve on commonly used and often wanted style utilities. It is heavily influenced by the utilities [material-ui](https://github.com/mui-org/material-ui) have in their theme object, but without all the burden that comes with it.
+
+**Style-genie**'s modularized architecture allows you to pick only the functionalities you want and shape them however you like in your app.
 
 ## Utilities
 
@@ -21,6 +25,13 @@ The currently offered utilities are:
 npm install style-genie
 ```
 
+<!-- prettier-ignore-start -->
 ```javascript
-import { generateBreakpoint, generateColor, generateSpacing, generateTransition } from 'style-genie'
+import {
+  generateBreakpoint,
+  generateColor,
+  generateSpacing,
+  generateTransition
+} from 'style-genie'
 ```
+<!-- prettier-ignore-end -->
