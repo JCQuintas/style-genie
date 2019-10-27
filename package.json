@@ -13,7 +13,8 @@
     "build": "pika build",
     "test": "jest --watch",
     "coverage": "jest --coverage",
-    "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "version": "npm run build"
   },
   "keywords": [
     "css-in-js",
