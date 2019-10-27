@@ -97,6 +97,7 @@ interface Color {
 interface GenerateColor {
   /**
    * Generates a color object.
+   * It gives easy access to colors and the possibility to manipulate them.
    *
    * @param options - __options__ object to initialize the function with.
    * @returns the color object.
@@ -104,6 +105,7 @@ interface GenerateColor {
   (options: GenerateColorParams): Color
   /**
    * Generates a color object.
+   * It gives easy access to colors and the possibility to manipulate them.
    *
    * @param color - __color__ the color to use when generating the object.
    * @param format - __format__ the color format the output should use.
@@ -112,6 +114,10 @@ interface GenerateColor {
   (color: ColorInput, format?: ColorFormat): Color
 }
 
+/**
+ * Generates a color object.
+ * It gives easy access to colors and the possibility to manipulate them.
+ */
 const generateColor: GenerateColor = (options: GenerateColorParams | ColorInput, format?: ColorFormat) => {
   const _color = isOptionsObject(options) ? options.color : options
   const _format = (isOptionsObject(options) && options && options.format) || format || defaultColorOptions.format
