@@ -2,7 +2,7 @@
 
 Media query strings generated based on customizable values.
 
-Default values are the most commonly used breakpoints, but it can be configured as you like.
+Default values are the most commonly used breakpoints, but they can be configured as you like.
 
 ## Usage
 
@@ -16,11 +16,11 @@ breakpoint.up.md // '@media (min-width: 960px)'
 
 ## Parameters
 
-The _generateBreakpoint_ function accepts only one options parameter, which can have the following properties.
+The _generateBreakpoint_ function accepts only one _options_ parameter, which can have the following properties.
 
-| property    | type                        | description              |
-| ----------- | --------------------------- | ------------------------ |
-| breakpoints | `{ [key: string]: number }` | custom breakpoint values |
+| property    | type                                    | description              | default                                           |
+| ----------- | --------------------------------------- | ------------------------ | ------------------------------------------------- |
+| breakpoints | `{ [key: string]: number } | undefined` | custom breakpoint values | `{ xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920 }` |
 
 ## Custom breakpoints
 
