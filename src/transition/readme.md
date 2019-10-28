@@ -18,10 +18,10 @@ transition() // 'all 250ms cubic-bezier(0.4, 0, 0.2, 1)'
 
 The _generateTransition_ function accepts only one _options_ parameter used to set the default values. It can have the following properties.
 
-| property | type                 | description                       | default                          |
-| -------- | -------------------- | --------------------------------- | -------------------------------- |
-| duration | `number | undefined` | the value in _ms_ of the duration | `250`                            |
-| easing   | `string | undefined` | the transition timing function    | `'cubic-bezier(0.4, 0, 0.2, 1)'` |
+| property | type                  | description                       | default                          |
+| -------- | --------------------- | --------------------------------- | -------------------------------- |
+| duration | `number OR undefined` | the value in _ms_ of the duration | `250`                            |
+| easing   | `string OR undefined` | the transition timing function    | `'cubic-bezier(0.4, 0, 0.2, 1)'` |
 
 ## Custom Defaults
 
@@ -37,11 +37,11 @@ The _transition_ is the result of the generator function. You have to call it to
 
 If called without parameters it will return the default values as shown above, but it can accept up to three parameters, `cssProperties`, `duration`, `easing`.
 
-| property      | type                            | description                       |
-| ------------- | ------------------------------- | --------------------------------- |
-| cssProperties | `string | string[] | undefined` | the css properties to be animated |
-| duration      | `number | undefined`            | the value in _ms_ of the duration |
-| easing        | `string | undefined`            | the transition timing function    |
+| property      | type                              | description                       |
+| ------------- | --------------------------------- | --------------------------------- |
+| cssProperties | `string OR string[] OR undefined` | the css properties to be animated |
+| duration      | `number OR undefined`             | the value in _ms_ of the duration |
+| easing        | `string OR undefined`             | the transition timing function    |
 
 ## Custom Overrides
 

@@ -18,9 +18,9 @@ breakpoint.up.md // '@media (min-width: 960px)'
 
 The _generateBreakpoint_ function accepts only one _options_ parameter, which can have the following properties.
 
-| property    | type                                    | description              | default                                           |
-| ----------- | --------------------------------------- | ------------------------ | ------------------------------------------------- |
-| breakpoints | `{ [key: string]: number } | undefined` | custom breakpoint values | `{ xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920 }` |
+| property    | type                                     | description              | default                                           |
+| ----------- | ---------------------------------------- | ------------------------ | ------------------------------------------------- |
+| breakpoints | `{ [key: string]: number } OR undefined` | custom breakpoint values | `{ xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920 }` |
 
 ## Custom breakpoints
 
