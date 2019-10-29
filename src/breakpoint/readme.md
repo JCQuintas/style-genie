@@ -36,7 +36,7 @@ The _generateBreakpoint_ function accepts only one _options_ parameter, which ca
 }
 ```
 
-## Custom breakpoints
+### Custom breakpoints
 
 You can pass in custom breakpoints to the _generateBreakpoint_ function. It is recommended to have one breakpoint for `0` and no repeating number.
 

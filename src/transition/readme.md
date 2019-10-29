@@ -32,7 +32,9 @@ The _generateTransition_ function accepts only one _options_ parameter used to s
 }
 ```
 
-## Custom defaults
+### Custom defaults
+
+You can define you own defaults but passing the _options_ object into the _generate_ function.
 
 ```javascript
 const transition = generateTransition({ duration: 1000, easing: 'ease-in' })
@@ -40,7 +42,7 @@ const transition = generateTransition({ duration: 1000, easing: 'ease-in' })
 transition() // 'all 1000ms ease-in'
 ```
 
-## The transition function
+## Transition function
 
 The _transition_ is the result of the generator function. You have to call it to get an actual transition string as output and it can be used throughout your app.
 
@@ -52,7 +54,7 @@ If called without parameters it will return the default values as shown above, b
 | duration      | `number`             | the value in _ms_ of the duration |
 | easing        | `string`             | the transition timing function    |
 
-## Custom overrides
+### Custom overrides
 
 You can override the default options in any call to the `transition` function. It will automatically joins two or more transitions if they are present.
 
