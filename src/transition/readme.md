@@ -59,13 +59,17 @@ If called without parameters it will return the default values as shown above, b
 You can override the default options in any call to the `transition` function. It will automatically joins two or more transitions if they are present.
 
 ```javascript
-transition('color', 150, 'ease-out') // 'color 150ms ease-out'
-transition(['color', 'top'], 150, 'ease-out') // 'color 150ms ease-out, top 150ms ease-out'
+transition('color', 150, 'ease-out')
+// 'color 150ms ease-out'
+transition(['color', 'top'], 150, 'ease-out')
+// 'color 150ms ease-out, top 150ms ease-out'
 ```
 
 You may also input the timing function as the second parameter, doing so will use the default duration.
 
 ```javascript
-transition('height', 'linear') // 'height 250ms linear'
-transition(['height', 'margin-left'], 'linear') // 'height 250ms linear, margin-left 250ms linear'
+transition('height', 'linear')
+// 'height 250ms linear'
+transition(['height', 'margin-left'], 'linear')
+// 'height 250ms linear, margin-left 250ms linear'
 ```
