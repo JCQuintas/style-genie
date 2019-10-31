@@ -90,4 +90,34 @@ describe('spacing', () => {
     expect(spacing(2, 3, 4)).toBe('1.25rem 1.375rem 1.5rem')
     expect(spacing(2, 3, 4, 5)).toBe('1.25rem 1.375rem 1.5rem 1.625rem')
   })
+
+  it('correctly works when passing ZERO in', () => {
+    const rem = generateSpacing({ unit: 'rem', base: 1, increment: 0.125 })
+    const px = generateSpacing()
+
+    expect(rem(0)).toBe('1rem')
+    expect(rem(0, 0, 0, 0)).toBe('1rem 1rem 1rem 1rem')
+    expect(px(0)).toBe('0px')
+    expect(px(0, 0, 0, 0)).toBe('0px 0px 0px 0px')
+  })
+
+  it('correctly works when passing negative numbers', () => {
+    const rem = generateSpacing({ unit: 'rem', base: 1, increment: 0.125 })
+    const px = generateSpacing()
+
+    expect(rem(-1)).toBe('0.875rem')
+    expect(rem(-1, -2, -3, -4)).toBe('0.875rem 0.75rem 0.625rem 0.5rem')
+    expect(px(-1)).toBe('-8px')
+    expect(px(-1, -2, -3, -4)).toBe('-8px -16px -24px -32px')
+  })
+
+  it('correctly works when passing negative ZERO to allow values with base to return zero', () => {
+    const rem = generateSpacing({ unit: 'rem', base: 1, increment: 0.125 })
+    const px = generateSpacing()
+
+    expect(rem(-0)).toBe('0rem')
+    expect(rem(-0, -0, -0, -0)).toBe('0rem 0rem 0rem 0rem')
+    expect(px(-0)).toBe('0px')
+    expect(px(-0, -0, -0, -0)).toBe('0px 0px 0px 0px')
+  })
 })

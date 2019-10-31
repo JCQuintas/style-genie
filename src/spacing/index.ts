@@ -38,19 +38,19 @@ interface Spacing {
   /**
    * Calculates the value based on the spacing and returns it as a string.
    *
-   * @param spacing - __spacing__ is the value used to multiply increment.
+   * @param multiplier - __multiplier__ is the value used to multiply increment.
    * - Default: `1`
-   * @returns a unit string `'<spacing>px'`
+   * @returns a unit string `'<multiplier>px'`
    */
-  (spacing?: number, asNumber?: false): string
+  (multiplier?: number, asNumber?: false): string
   /**
    * Calculates the value based on the spacing and returns it as a number.
    *
-   * @param spacing - __spacing__ is the value used to multiply increment.
+   * @param multiplier - __multiplier__ is the value used to multiply increment.
    * - Default: `1`
    * @returns a number
    */
-  (spacing: number, asNumber: true): number
+  (multiplier: number, asNumber: true): number
   /**
    * Calculates the value based on vertical and horizontal and returns it as a string.
    *
@@ -94,6 +94,11 @@ interface GenerateSpacing {
   (options?: GenerateSpacingParams): Spacing
 }
 
+const NegativeZeroGuard = (value: number) => {
+  if (value > 0 || value < 0) return value
+  return Object.is(-0, value) ? '-0' : value
+}
+
 /**
  * Generates the spacing function.
  * The spacing function can be used to easily multiply numbers into pixels.
@@ -103,17 +108,20 @@ const generateSpacing: GenerateSpacing = (options?: GenerateSpacingParams) => {
     const _increment = (options && options.increment) || defaultSpacingOptions.increment
     const _base = (options && options.base) || defaultSpacingOptions.base
     const _unit = (options && options.unit) || defaultSpacingOptions.unit
-    const calculate = (numberString: string) => `${_base + parseFloat(numberString) * _increment}${_unit}`
+    const calculate = (numberString: string) => {
+      if (numberString === '-0') return `0${_unit}`
+      return `${_base + parseFloat(numberString) * _increment}${_unit}`
+    }
 
-    const a = typeof arg1 === 'number' ? `${arg1}` : '1'
+    const a = typeof arg1 === 'number' ? `${NegativeZeroGuard(arg1)}` : '1'
 
     const returnNumber = (typeof arg2 === 'boolean' && arg2) || (typeof arg1 === 'boolean' && arg1)
 
     if (returnNumber) return parseFloat(calculate(a).slice(0, -_unit.length))
 
-    const b = typeof arg2 === 'number' ? `${arg2}` : undefined
-    const c = typeof arg3 === 'number' ? `${arg3}` : undefined
-    const d = typeof arg4 === 'number' ? `${arg4}` : undefined
+    const b = typeof arg2 === 'number' ? `${NegativeZeroGuard(arg2)}` : undefined
+    const c = typeof arg3 === 'number' ? `${NegativeZeroGuard(arg3)}` : undefined
+    const d = typeof arg4 === 'number' ? `${NegativeZeroGuard(arg4)}` : undefined
 
     return [a, b, c, d]
       .filter((v): v is string => !!v)
