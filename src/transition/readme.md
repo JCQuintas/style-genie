@@ -48,7 +48,7 @@ The _transition_ is the result of the generator function. You have to call it to
 
 If called without parameters it will return the default values as shown above, but it can accept up to three parameters, `cssProperties`, `duration`, `easing`.
 
-| property      | type                 | description                       |
+| parameters    | type                 | description                       |
 | ------------- | -------------------- | --------------------------------- |
 | cssProperties | `string OR string[]` | the css properties to be animated |
 | duration      | `number`             | the value in _ms_ of the duration |

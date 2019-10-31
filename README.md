@@ -15,8 +15,8 @@ The idea behind this project is to collect and improve on commonly used and ofte
 The currently offered utilities are:
 
 - **[Breakpoint](./src/breakpoint/readme.md)**: Media query strings generated based on customizable values.
-- **[Spacing](./src/spacing/readme.md)**: Maintain a coherent spacing calculation throughout the app.
 - **[Color](./src/color/readme.md)**: Gives easy access to custom colors and the ability to manipulate them.
+- **[Spacing](./src/spacing/readme.md)**: Maintain a coherent spacing calculation throughout the app.
 - **[Transition](./src/transition/readme.md)**: Generate transition strings without repetitive typing.
 
 ## Getting started
