@@ -43,7 +43,7 @@ The _generateSpacing_ function accepts only one _options_ parameter used to set 
 
 You can define you own defaults but passing the _options_ object into the _generate_ function.
 
-**Note:** the base value is always added to the final value with the formula `base + (input * increment)<unit>`, to bypass that you can input `-0` as the spacing, and the function will return `0<unit>`.
+> **Note:** the base value is always added to the final value with the formula `base + (input * increment)<unit>`, to bypass that you can input `-0` as the spacing, and the function will return `0<unit>`.
 
 ```javascript
 const spacing = generateSpacing({
