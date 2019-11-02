@@ -372,4 +372,12 @@ describe('breakpoint', () => {
     expect(black.format('hsl')).toBe('hsl(0, 0%, 0%)')
     expect(black.format('hsla')).toBe('hsla(0, 0%, 0%, 1)')
   })
+
+  it('calls toString correctly when casting the object to string', () => {
+    const white = generateColor('hsla(0, 0%, 100%)', 'hex')
+    const black = generateColor('#000', 'rgb')
+
+    expect(`${white}`).toBe('#ffffff')
+    expect(`${black}`).toBe('rgb(0, 0, 0)')
+  })
 })

@@ -126,6 +126,7 @@ const generateColor: GenerateColor = (options: GenerateColorParams | ColorInput,
     color: colorFormatter(colorArray, _format),
     manipulate: generateManipulate(colorArray, _format),
     format: (format: ColorFormat) => colorFormatter(colorArray, format),
+    toString: () => colorFormatter(colorArray, _format),
   }
 }
 
