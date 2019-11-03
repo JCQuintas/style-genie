@@ -25,7 +25,7 @@ const theme = {
 
 The `ThemeProvider` will simply accept the theme object we created above.
 
-```javascript
+```jsx
 <ThemeProvider theme={theme}>
   <YourApp />
 </ThemeProvider>
@@ -33,7 +33,7 @@ The `ThemeProvider` will simply accept the theme object we created above.
 
 Which will allow you to use theme inside any styled-component prop.
 
-```javascript
+```jsx
 const StyledComponent = styled.div`
   background: ${({ theme }) => theme.palette.background.color};
   padding: ${({ theme }) => theme.spacing(1)};

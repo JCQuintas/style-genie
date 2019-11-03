@@ -10,4 +10,4 @@
 ## Integration
 
 - [Overview](./src/integration/readme.md)
-  - [Styled-Components](./src/integration/styled-components.md)
+- [Styled-Components](./src/integration/styled-components.md)
