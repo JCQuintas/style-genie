@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": ".",
     "target": "es2019",
     "module": "esnext",
     "moduleResolution": "node",

@@ -1,19 +1,25 @@
-import { generateColor, defaultColorOptions, GenerateColorParams, Color, GenerateColor } from 'color'
+import { generateColor, defaultColorOptions, GenerateColorParams, Color, GenerateColor } from './color/index'
 import {
   generateBreakpoint,
   defaultBreakpointOptions,
   GenerateBreakpointParams,
   Breakpoint,
   GenerateBreakpoint,
-} from 'breakpoint'
-import { generateSpacing, defaultSpacingOptions, GenerateSpacingParams, Spacing, GenerateSpacing } from 'spacing'
+} from './breakpoint/index'
+import {
+  generateSpacing,
+  defaultSpacingOptions,
+  GenerateSpacingParams,
+  Spacing,
+  GenerateSpacing,
+} from './spacing/index'
 import {
   generateTransition,
   defaultTransitionOptions,
   GenerateTransitionParams,
   Transition,
   GenerateTransition,
-} from 'transition'
+} from './transition/index'
 
 export {
   // Color
