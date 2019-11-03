@@ -13,19 +13,15 @@ import { generateColor } from 'style-genie'
 // default format 'rgba'
 const white = generateColor('#fff')
 
-console.log(white)       // { color: 'rgba(255, 255, 255, 1)', ... }
-console.log(white.color) // 'rgba(255, 255, 255, 1)'
-console.log('' + white)  // 'rgba(255, 255, 255, 1)'
-console.log(`${white}`)  // 'rgba(255, 255, 255, 1)'
+white       // { color: 'rgba(255, 255, 255, 1)' , ... }
+white.color // 'rgba(255, 255, 255, 1)'
 
 // explicit format
 const black = generateColor('#000', 'hsl')
 
-console.log(black)       // { color: 'hsl(0, 0%, 0%)' , ... }
+black       // { color: 'hsl(0, 0%, 0%)' , ... }
 ```
 <!-- prettier-ignore-end -->
-
-> **Note:** Keep in mind that we provide a `toString` function to the color object. This means that, when casting the object to string, it will output the value of the `color` property, as to remove the need to type `.color` for every color. This might have consequences depending on your setup, ex: `JSON.stringify` will still consider the color an object instead of a string.
 
 ## Parameters
 
