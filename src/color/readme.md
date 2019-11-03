@@ -66,7 +66,7 @@ This function allows for manipulation of the color properties in the `HSLA` mode
 | hueShift   | `number` | shifts the **hue** by the given amount                   | `any`          |
 | illuminate | `number` | changes the **luminosity** value by the given percentage | `-1.0` - `1.0` |
 | saturate   | `number` | changes the **saturation** value by the given percentage | `-1.0` - `1.0` |
-| opacity    | `number` | sets the current opacity to the given number             | `0.0` - `1.0`  |
+| opacity    | `number` | sets the current **opacity** to the given number         | `0.0` - `1.0`  |
 
 ### Usage
 
