@@ -8,6 +8,7 @@
     "coverage": "jest --coverage",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "version": "npm run build",
+    "release": "pika publish",
     "link": "cd pkg && npm link && cd .."
   },
   "keywords": [
