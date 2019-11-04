@@ -10,6 +10,8 @@ The idea behind this project is to collect and improve on commonly used and ofte
 
 **Style-genie**'s modularized architecture allows you to pick only the functionalities you want and shape them however you like in your app.
 
+It is also meant to have as few dependencies as possible, currently we depend on `0` external non-dev dependencies.
+
 ## Getting started
 
 ```bash
@@ -35,4 +37,3 @@ The currently offered utilities are:
 - **[Color](./src/color/readme.md)**: Gives easy access to custom colors and the ability to manipulate them.
 - **[Spacing](./src/spacing/readme.md)**: Maintain a coherent spacing calculation throughout the app.
 - **[Transition](./src/transition/readme.md)**: Generate transition strings without repetitive typing.
-
