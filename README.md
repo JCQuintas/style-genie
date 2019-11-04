@@ -4,6 +4,24 @@ A collection of style utilities for css-in-js frameworks.
 
 Made with [typescript](https://github.com/microsoft/TypeScript), which provides support for in-editor documentation.
 
+## Badges
+
+<a href="https://www.npmjs.com/package/style-genie">
+  <img src="https://badgen.net/npm/v/style-genie?icon=npm&label=style-genie" alt="types included">
+</a>
+<a href="https://github.com/microsoft/TypeScript">
+  <img src="https://badgen.net/npm/types/style-genie?icon=typescript&label" alt="latest version">
+</a>
+<a href="https://codecov.io/gh/JCQuintas/style-genie">
+  <img src="https://badgen.net/codecov/c/github/JCQuintas/style-genie/master?icon=codecov" alt="code coverage">
+</a>
+<a href="https://www.codefactor.io/repository/github/jcquintas/style-genie">
+  <img src="https://www.codefactor.io/repository/github/jcquintas/style-genie/badge" alt="code quality">
+</a>
+<a href="https://opensource.org/licenses/MIT">
+  <img src="https://badgen.net/npm/license/style-genie" alt="license">
+</a>
+
 ## Why?
 
 The idea behind this project is to collect and improve on commonly used and often wanted style utilities. It is heavily influenced by the utilities [material-ui](https://github.com/mui-org/material-ui) have in their theme object, but without all the burden that comes with it.
