@@ -12,6 +12,7 @@ import { generateBreakpoint } from 'style-genie'
 const breakpoint = generateBreakpoint()
 
 breakpoint.up.md // '@media (min-width: 960px)'
+breakpoint.down.md // '@media (max-width: 959.95px)'
 ```
 
 ## Parameters
