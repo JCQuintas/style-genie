@@ -1,6 +1,6 @@
 {
   "name": "style-genie",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A style utility for css-in-js frameworks.",
   "scripts": {
     "build": "pika build",
@@ -8,8 +8,6 @@
     "coverage": "jest --coverage",
     "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "version": "npm run build",
-    "prepublishOnly": "cd pkg",
-    "postpublish": "cd ../",
     "link": "cd pkg && npm link && cd .."
   },
   "keywords": [
