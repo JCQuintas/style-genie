@@ -2,7 +2,9 @@
 
 A collection of style utilities for css-in-js frameworks.
 
-Made with [typescript](https://github.com/microsoft/TypeScript), which provides support for in-editor documentation.
+Made with [typescript](https://github.com/microsoft/TypeScript) and well documented with support for in-editor insights and tooltips.
+
+[Documentation](https://jcquintas.gitbook.io/style-genie/)
 
 ## Badges
 
