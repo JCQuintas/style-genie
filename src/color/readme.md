@@ -43,13 +43,17 @@ The `color` property can accept a various amount of input format. Here they are 
 
 ## Color Object
 
-The color object is the result of the generator function. Apart from the `color` property shown above, there are a two other.
+The color object is the result of the generator function. Apart from the `color` property shown above, there are a few others.
 
 ```typescript
 {
   color: string,
-  manipulate: Function,
   format: Function,
+  manipulate: Function,
+  hueShift: Function,
+  illuminate: Function,
+  saturate: Function,
+  opacity: Function,
 }
 ```
 
@@ -63,6 +67,8 @@ This function allows for manipulation of the color properties in the `HSLA` mode
 | illuminate | `number` | changes the **luminosity** value by the given percentage | `-1.0` - `1.0` |
 | saturate   | `number` | changes the **saturation** value by the given percentage | `-1.0` - `1.0` |
 | opacity    | `number` | sets the current **opacity** to the given number         | `0.0` - `1.0`  |
+
+> **Note:** the helped functions hueShift, illuminate, saturate and opacity all work as if using the manipulate function with the proper value. Eg: `.opacity(0.1)` equals `.manipulate({ opacity: 0.1 })`.
 
 ### Usage
 

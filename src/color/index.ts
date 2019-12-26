@@ -2,7 +2,14 @@ import { ColorArray, RGBRegex, HSLRegex, ColorInput, ColorFormat } from './const
 import { RGBToRGBArray } from './rgb-to-rgb'
 import { HSLtoRGBArray } from './hsl-to-rgb'
 import { hexToRGBArray } from './hex-to-rgb'
-import { Manipulate, generateManipulate } from './manipulate'
+import {
+  Manipulate,
+  generateManipulate,
+  OpacityFunction,
+  HueShiftFunction,
+  IlluminateFunction,
+  SaturateFunction,
+} from './manipulate'
 import { colorFormatter } from './color-formatter'
 
 const getColorArray = (color: ColorInput): ColorArray => {
@@ -77,18 +84,42 @@ interface Color {
    */
   color: string
   /**
-   * A function to manipulate the properties of the color.
-   *
-   * @returns a formatted color string with the transformations.
-   */
-  manipulate: Manipulate
-  /**
    * A function to format the color output.
    *
    * @param format - __format__ the color format.
    * @returns a formatted color string with the transformations.
    */
   format: FormatFunction
+  /**
+   * A function to manipulate the properties of the color.
+   *
+   * @returns a formatted color string with the transformations.
+   */
+  manipulate: Manipulate
+  /**
+   * A function to manipulate the hue of the color.
+   *
+   * @returns a formatted color string with the transformation.
+   */
+  hueShift: HueShiftFunction
+  /**
+   * A function to manipulate the luminosity of the color.
+   *
+   * @returns a formatted color string with the transformation.
+   */
+  illuminate: IlluminateFunction
+  /**
+   * A function to manipulate the saturation of the color.
+   *
+   * @returns a formatted color string with the transformation.
+   */
+  saturate: SaturateFunction
+  /**
+   * A function to manipulate the opacity of the color.
+   *
+   * @returns a formatted color string with the transformation.
+   */
+  opacity: OpacityFunction
 }
 
 /**
@@ -122,10 +153,15 @@ const generateColor: GenerateColor = (options: GenerateColorParams | ColorInput,
   const _color = isOptionsObject(options) ? options.color : options
   const _format = (isOptionsObject(options) && options && options.format) || format || defaultColorOptions.format
   const colorArray = getColorArray(_color)
+  const _manipulate = generateManipulate(colorArray, _format)
   return {
     color: colorFormatter(colorArray, _format),
-    manipulate: generateManipulate(colorArray, _format),
     format: (format: ColorFormat) => colorFormatter(colorArray, format),
+    manipulate: _manipulate,
+    hueShift: (hueShift?: number) => _manipulate({ hueShift }),
+    illuminate: (illuminate?: number) => _manipulate({ illuminate }),
+    saturate: (saturate?: number) => _manipulate({ saturate }),
+    opacity: (opacity?: number) => _manipulate({ opacity }),
   }
 }
 

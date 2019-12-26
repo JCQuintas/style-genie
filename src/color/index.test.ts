@@ -110,6 +110,19 @@ describe('breakpoint', () => {
     expect(color.manipulate({ hueShift: 800 })).toBe('hsla(89, 100%, 77%, 1)')
   })
 
+  it('hueShift function works correctly when used', () => {
+    const color = generateColor('#ff9988', 'hsla')
+
+    expect(color).toMatchObject({
+      color: 'hsla(9, 100%, 77%, 1)',
+    })
+
+    expect(color.hueShift(10)).toBe('hsla(19, 100%, 77%, 1)')
+    expect(color.hueShift(-10)).toBe('hsla(359, 100%, 77%, 1)')
+    expect(color.hueShift(355)).toBe('hsla(4, 100%, 77%, 1)')
+    expect(color.hueShift(800)).toBe('hsla(89, 100%, 77%, 1)')
+  })
+
   it('manipulate function works correctly when opacity is used', () => {
     const color = generateColor('#9988dd', 'hsla')
 
@@ -119,6 +132,17 @@ describe('breakpoint', () => {
     expect(color.manipulate({ opacity: 0.5 })).toBe('hsla(252, 56%, 70%, 0.5)')
     expect(color.manipulate({ opacity: 50 })).toBe('hsla(252, 56%, 70%, 1)')
     expect(color.manipulate({ opacity: -10 })).toBe('hsla(252, 56%, 70%, 0)')
+  })
+
+  it('opacity function works correctly when used', () => {
+    const color = generateColor('#9988dd', 'hsla')
+
+    expect(color).toMatchObject({
+      color: 'hsla(252, 56%, 70%, 1)',
+    })
+    expect(color.opacity(0.5)).toBe('hsla(252, 56%, 70%, 0.5)')
+    expect(color.opacity(50)).toBe('hsla(252, 56%, 70%, 1)')
+    expect(color.opacity(-10)).toBe('hsla(252, 56%, 70%, 0)')
   })
 
   it('manipulate function works correctly when illuminate is used', () => {
@@ -137,6 +161,22 @@ describe('breakpoint', () => {
     expect(color.manipulate({ illuminate: 100 })).toBe('hsla(202, 70%, 100%, 1)')
   })
 
+  it('illuminate function works correctly when used', () => {
+    const color = generateColor('#7dc1e8', 'hsla')
+
+    expect(color).toMatchObject({
+      color: 'hsla(202, 70%, 70%, 1)',
+    })
+    expect(color.illuminate(0.1)).toBe('hsla(202, 70%, 77%, 1)')
+    expect(color.illuminate(0.2)).toBe('hsla(202, 70%, 84%, 1)')
+    expect(color.illuminate(1)).toBe('hsla(202, 70%, 100%, 1)')
+    expect(color.illuminate(-0.1)).toBe('hsla(202, 70%, 63%, 1)')
+    expect(color.illuminate(-0.5)).toBe('hsla(202, 70%, 35%, 1)')
+    expect(color.illuminate(-1)).toBe('hsla(202, 70%, 0%, 1)')
+    expect(color.illuminate(-100)).toBe('hsla(202, 70%, 0%, 1)')
+    expect(color.illuminate(100)).toBe('hsla(202, 70%, 100%, 1)')
+  })
+
   it('manipulate function works correctly when saturate is used', () => {
     const color = generateColor('#40bf5e', 'hsla')
 
@@ -151,6 +191,22 @@ describe('breakpoint', () => {
     expect(color.manipulate({ saturate: -1 })).toBe('hsla(134, 0%, 50%, 1)')
     expect(color.manipulate({ saturate: -100 })).toBe('hsla(134, 0%, 50%, 1)')
     expect(color.manipulate({ saturate: 100 })).toBe('hsla(134, 100%, 50%, 1)')
+  })
+
+  it('saturate function works correctly when used', () => {
+    const color = generateColor('#40bf5e', 'hsla')
+
+    expect(color).toMatchObject({
+      color: 'hsla(134, 50%, 50%, 1)',
+    })
+    expect(color.saturate(0.1)).toBe('hsla(134, 55%, 50%, 1)')
+    expect(color.saturate(0.2)).toBe('hsla(134, 60%, 50%, 1)')
+    expect(color.saturate(1)).toBe('hsla(134, 100%, 50%, 1)')
+    expect(color.saturate(-0.1)).toBe('hsla(134, 45%, 50%, 1)')
+    expect(color.saturate(-0.5)).toBe('hsla(134, 25%, 50%, 1)')
+    expect(color.saturate(-1)).toBe('hsla(134, 0%, 50%, 1)')
+    expect(color.saturate(-100)).toBe('hsla(134, 0%, 50%, 1)')
+    expect(color.saturate(100)).toBe('hsla(134, 100%, 50%, 1)')
   })
 
   it('manipulate function works correctly when saturate illuminate and hueShift are used', () => {
