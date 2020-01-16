@@ -1,4 +1,5 @@
 export * from './color-formatter'
+export * from './get-color-array'
 export * from './hex-to-rgb'
 export * from './hsl-to-rgb'
 export * from './rgb-to-hsl'

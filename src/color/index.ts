@@ -1,6 +1,5 @@
-import { getColorArray } from './utils'
-import { colorFormatter } from './formatters'
-import { generateManipulate } from './manipulate'
+import { colorFormatter, getColorArray } from './formatters/index'
+import { generateManipulate } from './manipulate/index'
 import { ColorInput, ColorFormat, GenerateColorParams, GenerateColor, Color } from './index.types'
 
 const isOptionsObject = (value: any): value is GenerateColorParams => value && value.color

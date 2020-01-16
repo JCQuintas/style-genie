@@ -1,6 +1,8 @@
-import { RGBToRGBArray, HSLtoRGBArray, hexToRGBArray } from '../formatters'
-import { RGBRegex, HSLRegex } from './constants'
+import { RGBToRGBArray } from './rgb-to-rgb'
+import { hexToRGBArray } from './hex-to-rgb'
+import { HSLtoRGBArray } from './hsl-to-rgb'
 import { ColorInput, ColorArray } from '../index.types'
+import { RGBRegex, HSLRegex } from '../constants'
 
 export const getColorArray = (color: ColorInput): ColorArray => {
   const getArrayBasedOnInput = (color: ColorInput): ColorArray => {

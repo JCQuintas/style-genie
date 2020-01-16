@@ -1,4 +1,4 @@
-import { HSLRegex, ColorEndRegex } from '../utils'
+import { HSLRegex, ColorEndRegex } from '../constants'
 import { ColorArray } from '../index.types'
 
 const hue2rgb = (p: number, q: number, t: number) => {
@@ -33,9 +33,11 @@ export const HSLArrayToRGBArray = ([h, s, l, a]: ColorArray): ColorArray => {
 }
 
 export const HSLtoRGBArray = (color: string): ColorArray =>
-  HSLArrayToRGBArray(color
-    .replace(HSLRegex, '')
-    .replace(ColorEndRegex, '')
-    .replace(/%/g, '')
-    .split(',')
-    .map(parseFloat) as ColorArray)
+  HSLArrayToRGBArray(
+    color
+      .replace(HSLRegex, '')
+      .replace(ColorEndRegex, '')
+      .replace(/%/g, '')
+      .split(',')
+      .map(parseFloat) as ColorArray
+  )

@@ -1,4 +1,4 @@
-import { RGBToHSLArray, HSLArrayToRGBArray, colorFormatter } from '../formatters'
+import { RGBToHSLArray, HSLArrayToRGBArray, colorFormatter } from '../formatters/index'
 import { applyHueShift } from './apply-hue-shift'
 import { applyTransform } from './apply-transformation'
 import { ColorArray, ColorFormat } from '../index.types'
