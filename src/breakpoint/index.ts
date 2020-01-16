@@ -1,3 +1,5 @@
+import { GenerateBreakpoint, GenerateBreakpointParams, Breakpoint } from './index.types'
+
 const defaultBreakpointOptions = {
   breakpoints: {
     xs: 0,
@@ -8,59 +10,6 @@ const defaultBreakpointOptions = {
   },
   unit: 'px',
   step: 5 / 100,
-}
-
-/**
- * The typing for the __params__ of the `generateBreakpoint` function.
- */
-interface GenerateBreakpointParams {
-  /**
-   * `breakpoints` is an object of number values used to define the breakpoints.
-   */
-  breakpoints: { [key: string]: number }
-}
-
-/**
- * The typing for the __return__ value of the `generateBreakpoint` function.
- *
- * @typeparam T is _optional_ and is used to define the shape of `up` and `down`
- */
-type Breakpoint<T extends { [key: string]: number } = typeof defaultBreakpointOptions['breakpoints']> = {
-  /**
-   * `up` is the __min-width__ in which the breakpoint should take effect `@media (min-width: --px)`.
-   */
-  up: { [P in keyof T]: string }
-  /**
-   * `down` is the __max-width__ in which the breakpoint should take effect `@media (max-width: --px)`.
-   */
-  down: { [P in keyof T]: string }
-}
-
-/**
- * The typing for the `generateBreakpoint` function.
- */
-interface GenerateBreakpoint {
-  /**
-   * Generate the breakpoints object based on the default breakpoints.
-   * The breakpoints object has media query strings generated based on the input object values.
-   *
-   * @returns the breakpoints object with every value pre-calculated.
-   */
-  (): Breakpoint
-  /**
-   * Generate the breakpoints object based on the given input.
-   * The breakpoints object has media query strings generated based on the input object values.
-   *
-   * ```ts
-   * breakpoints = {
-   *   [key: string]: number
-   * }
-   * ```
-   *
-   * @param options - __options__ object to initialize the function with.
-   * @returns the breakpoints object with every value pre-calculated.
-   */
-  <O extends GenerateBreakpointParams>(options?: O): Breakpoint<O['breakpoints']>
 }
 
 /**
@@ -87,7 +36,7 @@ const generateBreakpoint: GenerateBreakpoint = (options?: GenerateBreakpointPara
     const endIndex = i + 1
     // Biggest size is just min-width: min-size
     if (endIndex === _breakpoints.length) return { ...acc, [key]: Object.values(up)[0] }
-    // Value of each key is index + 1 - 0.05
+    // Value of each key is (index + 1) - {step}0.05
     return {
       ...acc,
       [key]: `@media (max-width: ${_breakpoints[endIndex][1] - _step}${_unit})`,

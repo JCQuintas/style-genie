@@ -1,4 +1,4 @@
-import { ColorArray } from './constants'
+import { ColorArray } from '../index.types'
 
 export const RGBToHSLArray = (color: ColorArray): ColorArray => {
   const _r = color[0] / 255

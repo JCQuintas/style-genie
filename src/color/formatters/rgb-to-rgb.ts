@@ -1,4 +1,5 @@
-import { ColorArray, RGBRegex, ColorEndRegex } from './constants'
+import { RGBRegex, ColorEndRegex } from '../utils'
+import { ColorArray } from '../index.types'
 
 export const RGBToRGBArray = (color: string): ColorArray =>
   color

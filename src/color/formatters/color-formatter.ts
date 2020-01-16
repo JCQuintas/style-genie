@@ -1,4 +1,4 @@
-import { ColorArray, ColorFormat } from './constants'
+import { ColorArray, ColorFormat } from '../index.types'
 import { RGBToHSLArray } from './rgb-to-hsl'
 
 export const colorFormatter = (colorArray: ColorArray, format: ColorFormat, hslInput?: boolean): string => {

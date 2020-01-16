@@ -1,4 +1,4 @@
-import { ColorArray } from './constants'
+import { ColorArray } from '../index.types'
 
 export const hexToRGBArray = (color: string): ColorArray => {
   const shortHex = /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i
