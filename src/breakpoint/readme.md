@@ -13,6 +13,7 @@ const breakpoint = generateBreakpoint()
 
 breakpoint.up.md // '@media (min-width: 960px)'
 breakpoint.down.md // '@media (max-width: 959.95px)'
+breakpoint.only.md // '@media (min-width: 960px) and (max-width: 1279.95px)'
 ```
 
 ## Parameters
