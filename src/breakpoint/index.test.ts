@@ -24,6 +24,7 @@ describe('breakpoint', () => {
         up: breakpointShape,
         down: breakpointShape,
         only: breakpointShape,
+        between: expect.any(Function),
       })
     )
   })
@@ -37,6 +38,7 @@ describe('breakpoint', () => {
         up: customShape,
         down: customShape,
         only: customShape,
+        between: expect.any(Function),
       })
     )
   })
@@ -62,6 +64,16 @@ describe('breakpoint', () => {
     expect(breakpoint.only.md).toBe('@media (min-width: 960px) and (max-width: 1279.95px)')
     expect(breakpoint.only.lg).toBe('@media (min-width: 1280px) and (max-width: 1919.95px)')
     expect(breakpoint.only.xl).toBe('@media (min-width: 1920px)')
+
+    expect(breakpoint.between('xs', 'sm')).toBe('@media (min-width: 0px) and (max-width: 599.95px)')
+    expect(breakpoint.between('sm', 'md')).toBe('@media (min-width: 600px) and (max-width: 959.95px)')
+    expect(breakpoint.between('md', 'lg')).toBe('@media (min-width: 960px) and (max-width: 1279.95px)')
+    expect(breakpoint.between('lg', 'xl')).toBe('@media (min-width: 1280px) and (max-width: 1919.95px)')
+
+    expect(breakpoint.between('xs', 'xl')).toBe('@media (min-width: 0px) and (max-width: 1919.95px)')
+    expect(breakpoint.between('sm', 'lg')).toBe('@media (min-width: 600px) and (max-width: 1279.95px)')
+    expect(breakpoint.between('md', 'sm')).toBe('@media (min-width: 600px) and (max-width: 959.95px)')
+    expect(breakpoint.between('lg', 'xs')).toBe('@media (min-width: 0px) and (max-width: 1279.95px)')
   })
 
   it('correctly build strings with custom breakpoints', () => {
@@ -77,5 +89,11 @@ describe('breakpoint', () => {
     expect(breakpoint.only.s).toBe('@media (min-width: 100px) and (max-width: 199.95px)')
     expect(breakpoint.only.m).toBe('@media (min-width: 200px) and (max-width: 299.95px)')
     expect(breakpoint.only.g).toBe('@media (min-width: 300px)')
+
+    expect(breakpoint.between('s', 'm')).toBe('@media (min-width: 100px) and (max-width: 199.95px)')
+    expect(breakpoint.between('m', 'g')).toBe('@media (min-width: 200px) and (max-width: 299.95px)')
+
+    expect(breakpoint.between('s', 'g')).toBe('@media (min-width: 100px) and (max-width: 299.95px)')
+    expect(breakpoint.between('g', 'm')).toBe('@media (min-width: 200px) and (max-width: 299.95px)')
   })
 })

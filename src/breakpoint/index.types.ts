@@ -26,6 +26,10 @@ export interface Breakpoint<T extends { [key: string]: number } = Record<'xs' | 
    * `only` will only have effect when in between the actual key value and the next bigger size `@media (min-width: --px) and (max-width: --px)`.
    */
   only: { [P in keyof T]: string }
+  /**
+   * `between` will have effect when in between the input values `@media (min-width: --px) and (max-width: --px)`.
+   */
+  between: (from: keyof T, to: keyof T) => string
 }
 
 /**
