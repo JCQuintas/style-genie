@@ -1,32 +1,44 @@
 import { generateBreakpoint } from './index'
 
+const breakpointShape = {
+  xs: expect.any(String),
+  sm: expect.any(String),
+  md: expect.any(String),
+  lg: expect.any(String),
+  xl: expect.any(String),
+}
+
+const customShape = {
+  s: expect.any(String),
+  m: expect.any(String),
+  g: expect.any(String),
+}
+
 describe('breakpoint', () => {
   it('generates an object with default properties if no parameters are given', () => {
     const breakpoint = generateBreakpoint()
     expect(breakpoint).toBeTruthy()
     expect(typeof breakpoint).toBe('object')
-    expect(breakpoint).toHaveProperty('up.xs')
-    expect(breakpoint).toHaveProperty('up.sm')
-    expect(breakpoint).toHaveProperty('up.md')
-    expect(breakpoint).toHaveProperty('up.lg')
-    expect(breakpoint).toHaveProperty('up.xl')
-    expect(breakpoint).toHaveProperty('down.xs')
-    expect(breakpoint).toHaveProperty('down.sm')
-    expect(breakpoint).toHaveProperty('down.md')
-    expect(breakpoint).toHaveProperty('down.lg')
-    expect(breakpoint).toHaveProperty('down.xl')
+    expect(breakpoint).toStrictEqual(
+      expect.objectContaining({
+        up: breakpointShape,
+        down: breakpointShape,
+        only: breakpointShape,
+      })
+    )
   })
 
   it('generates an object with the given properties if options does contain "breakpoints"', () => {
     const breakpoint = generateBreakpoint({ breakpoints: { s: 100, m: 200, g: 300 } })
     expect(breakpoint).toBeTruthy()
     expect(typeof breakpoint).toBe('object')
-    expect(breakpoint).toHaveProperty('up.s')
-    expect(breakpoint).toHaveProperty('up.m')
-    expect(breakpoint).toHaveProperty('up.g')
-    expect(breakpoint).toHaveProperty('down.s')
-    expect(breakpoint).toHaveProperty('down.m')
-    expect(breakpoint).toHaveProperty('down.g')
+    expect(breakpoint).toStrictEqual(
+      expect.objectContaining({
+        up: customShape,
+        down: customShape,
+        only: customShape,
+      })
+    )
   })
 
   it('correctly build the default strings', () => {
@@ -44,6 +56,12 @@ describe('breakpoint', () => {
     expect(breakpoint.down.md).toBe('@media (max-width: 1279.95px)')
     expect(breakpoint.down.lg).toBe('@media (max-width: 1919.95px)')
     expect(breakpoint.down.xl).toBe('@media (min-width: 0px)')
+
+    expect(breakpoint.only.xs).toBe('@media (min-width: 0px) and (max-width: 599.95px)')
+    expect(breakpoint.only.sm).toBe('@media (min-width: 600px) and (max-width: 959.95px)')
+    expect(breakpoint.only.md).toBe('@media (min-width: 960px) and (max-width: 1279.95px)')
+    expect(breakpoint.only.lg).toBe('@media (min-width: 1280px) and (max-width: 1919.95px)')
+    expect(breakpoint.only.xl).toBe('@media (min-width: 1920px)')
   })
 
   it('correctly build strings with custom breakpoints', () => {
@@ -55,5 +73,9 @@ describe('breakpoint', () => {
     expect(breakpoint.down.s).toBe('@media (max-width: 199.95px)')
     expect(breakpoint.down.m).toBe('@media (max-width: 299.95px)')
     expect(breakpoint.down.g).toBe('@media (min-width: 100px)')
+
+    expect(breakpoint.only.s).toBe('@media (min-width: 100px) and (max-width: 199.95px)')
+    expect(breakpoint.only.m).toBe('@media (min-width: 200px) and (max-width: 299.95px)')
+    expect(breakpoint.only.g).toBe('@media (min-width: 300px)')
   })
 })

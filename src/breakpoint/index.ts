@@ -43,7 +43,18 @@ const generateBreakpoint: GenerateBreakpoint = (options?: GenerateBreakpointPara
     }
   }, {})
 
-  return { up, down } as Breakpoint
+  const only = _breakpoints.reduce((acc, [key, value], i) => {
+    const endIndex = i + 1
+    // Biggest size is just min-width: max-size
+    if (endIndex === _breakpoints.length) return { ...acc, [key]: Object.values(up)[i] }
+    // Value of each key is (index + 1) - {step}0.05
+    return {
+      ...acc,
+      [key]: `@media (min-width: ${value}${_unit}) and (max-width: ${_breakpoints[endIndex][1] - _step}${_unit})`,
+    }
+  }, {})
+
+  return { up, down, only } as Breakpoint
 }
 
 export { generateBreakpoint, defaultBreakpointOptions, GenerateBreakpointParams, Breakpoint, GenerateBreakpoint }

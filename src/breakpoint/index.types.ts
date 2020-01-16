@@ -22,6 +22,10 @@ export interface Breakpoint<T extends { [key: string]: number } = Record<'xs' | 
    * `down` is the __max-width__ in which the breakpoint should take effect `@media (max-width: --px)`.
    */
   down: { [P in keyof T]: string }
+  /**
+   * `only` will only have effect when in between the actual key value and the next bigger size `@media (min-width: --px) and (max-width: --px)`.
+   */
+  only: { [P in keyof T]: string }
 }
 
 /**
