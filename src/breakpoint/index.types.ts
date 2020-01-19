@@ -11,7 +11,7 @@ export interface GenerateBreakpointParams {
 /**
  * The typing for the __return__ value of the `generateBreakpoint` function.
  *
- * @typeparam T is _optional_ and is used to define the shape of `up` and `down`
+ * @typeparam T is _optional_ and is used to define the shape of `up`, `down` and `only`
  */
 export interface Breakpoint<T extends { [key: string]: number } = Record<'xs' | 'sm' | 'md' | 'lg' | 'xl', number>> {
   /**

@@ -14,6 +14,13 @@ import {
   GenerateSpacing,
 } from './spacing/index'
 import {
+  generateTransform,
+  defaultTransformOptions,
+  GenerateTransformParams,
+  Transform,
+  GenerateTransform,
+} from './transform/index'
+import {
   generateTransition,
   defaultTransitionOptions,
   GenerateTransitionParams,
@@ -40,6 +47,12 @@ export {
   GenerateSpacingParams,
   Spacing,
   GenerateSpacing,
+  // Transform
+  generateTransform,
+  defaultTransformOptions,
+  GenerateTransformParams,
+  Transform,
+  GenerateTransform,
   // Transition
   generateTransition,
   defaultTransitionOptions,
