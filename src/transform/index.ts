@@ -110,7 +110,7 @@ export const generateTransform: GenerateTransform = (options?: GenerateTransform
     const transformsFlat = flattenDeep(
       transformsArray.map(t => Object.entries(t).map(([transform, value]) => ({ type: transform, value })))
     )
-    return transformsFlat.map(v => ({ ...v, value: mapValues(v.value, _units) })).join(' ')
+    return transformsFlat.map(v => mapValues(v, _units)).join(' ')
   }
   return transform as Transform
 }
