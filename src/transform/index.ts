@@ -23,7 +23,7 @@ import {
   translateZToString,
   translate3dToString,
 } from './properties/index'
-import { DeepRequired } from '../utils/index'
+import { DeepRequired, deepMerge } from '../utils/index'
 
 interface InputTransform {
   type: keyof TransformProps
@@ -99,13 +99,11 @@ const mapValues = (transform: InputTransform, units: DeepRequired<GenerateTransf
  * The transform function can be used to easily create transforms in a parametrized fashion.
  */
 export const generateTransform: GenerateTransform = (options?: GenerateTransformParams): Transform => {
-  const _units = {
-    ...defaultTransformOptions.units,
-    ...(options && options.units),
-    translate: { ...defaultTransformOptions.units.translate, ...(options && options.units && options.units.translate) },
-  }
-
-  const transform = (transforms: TransformProps | TransformProps[]) => {
+  const transform = (transforms: TransformProps | TransformProps[], overrides?: GenerateTransformParams) => {
+    const { units: _units } = deepMerge<DeepRequired<GenerateTransformParams>>(
+      deepMerge(defaultTransformOptions, options || {}),
+      overrides || {}
+    )
     const transformsArray = !Array.isArray(transforms) ? [transforms] : transforms
     const transformsFlat = flattenDeep(
       transformsArray.map(t => Object.entries(t).map(([transform, value]) => ({ type: transform, value })))

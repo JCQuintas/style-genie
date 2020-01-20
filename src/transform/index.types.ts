@@ -185,9 +185,10 @@ export interface Transform {
    * to add more that one transform of the same type or to order them.
    *
    * @param transforms - __transforms__ is an object or array of objects with possible transform properties.
+   * @param overrides - __overrides__ object to override any options just for this instance.
    * @returns a transform string `'translate(--px) rotate(--deg)'`
    */
-  (transforms: TransformProps | TransformProps[]): string
+  (transforms: TransformProps | TransformProps[], overrides?: GenerateTransformParams): string
 }
 
 /**

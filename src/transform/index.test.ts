@@ -258,4 +258,14 @@ describe('transform', () => {
 
     expect(transform([{ rotate: 15 }, { rotate: 10, scale: 1.5 }])).toBe('rotate(15deg) rotate(10deg) scale(1.5)')
   })
+
+  it('works when using local overrides', () => {
+    const transform = generateTransform()
+
+    expect(
+      transform([{ perspective: 15 }, { rotate: 10, skew: 1.5, translate3d: [10, 20, 30] }], {
+        units: { perspective: 'cm', rotate: 'turn', skew: 'rad', translate: { xy: 'in', z: 'pt' } },
+      })
+    ).toBe('perspective(15cm) rotate(10turn) skew(1.5rad) translate3d(10in, 20in, 30pt)')
+  })
 })
