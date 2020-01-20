@@ -90,7 +90,7 @@ const mapValues = (transform: InputTransform, units: DeepRequired<GenerateTransf
     case 'translate3d':
       return addFunctionMarkup(transform.type, translate3dToString(transform.value, units.translate))
     default:
-      return transform.value
+      return ''
   }
 }
 
@@ -102,7 +102,7 @@ export const generateTransform: GenerateTransform = (options?: GenerateTransform
   const _units = {
     ...defaultTransformOptions.units,
     ...(options && options.units),
-    translate: { ...defaultTransformOptions.units.translate, ...(options && options.units?.translate) },
+    translate: { ...defaultTransformOptions.units.translate, ...(options && options.units && options.units.translate) },
   }
 
   const transform = (transforms: TransformProps | TransformProps[]) => {
