@@ -26,14 +26,14 @@
     "@pika/plugin-build-web": "^0.8.1",
     "@pika/plugin-ts-standard-pkg": "^0.8.1",
     "@types/jest": "^24.9.0",
-    "@types/node": "^13.1.7",
+    "@types/node": "^13.1.8",
     "csstype": "^2.6.8",
     "husky": "^4.0.10",
     "jest": "^24.9.0",
-    "lint-staged": "^9.5.0",
+    "lint-staged": "^10.0.1",
     "prettier": "^1.19.1",
     "ts-jest": "^24.3.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "husky": {
     "hooks": {
