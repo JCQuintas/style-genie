@@ -2,7 +2,7 @@ import { TransformAngleUnit } from '../utils'
 
 interface SkewObject {
   ax: number | string
-  ay: number | string
+  ay?: number | string
 }
 
 type SkewArray = [number | string, (number | string)?]
@@ -19,7 +19,7 @@ export const skewToString = (skew: SkewProp, unit: TransformAngleUnit): string =
       .filter(Boolean)
       .map(v => skewToString(v!, unit))
       .join(', ')
-  return `${skewToString(skew.ax, unit)}, ${skewToString(skew.ay, unit)}`
+  return skew.ay ? `${skewToString(skew.ax, unit)}, ${skewToString(skew.ay, unit)}` : skewToString(skew.ax, unit)
 }
 
 export const skewXToString = skewToString
