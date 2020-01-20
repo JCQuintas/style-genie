@@ -47,17 +47,15 @@ type Matrix3dArray = [
   number
 ]
 
-export type MatrixProp = MatrixObject | MatrixArray | string
-export type Matrix3dProp = Matrix3dObject | Matrix3dArray | string
+export type MatrixProp = MatrixObject | MatrixArray
+export type Matrix3dProp = Matrix3dObject | Matrix3dArray
 
 export const matrixToString = (matrix: MatrixProp) => {
-  if (typeof matrix === 'string') return matrix
   if (Array.isArray(matrix)) return matrix.join(', ')
   return `${matrix.a}, ${matrix.b}, ${matrix.c}, ${matrix.d}, ${matrix.tx}, ${matrix.ty}`
 }
 
 export const matrix3dToString = (matrix3d: Matrix3dProp) => {
-  if (typeof matrix3d === 'string') return matrix3d
   if (Array.isArray(matrix3d)) return matrix3d.join(', ')
   return `${matrix3d.a1}, ${matrix3d.b1}, ${matrix3d.c1}, ${matrix3d.d1}, ${matrix3d.a2}, ${matrix3d.b2}, ${matrix3d.c2}, ${matrix3d.d2}, ${matrix3d.a3}, ${matrix3d.b3}, ${matrix3d.c3}, ${matrix3d.d3}, ${matrix3d.a4}, ${matrix3d.b4}, ${matrix3d.c4}, ${matrix3d.d4}`
 }
