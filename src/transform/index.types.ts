@@ -1,25 +1,25 @@
 import {
-  Matrix3dProp,
   MatrixProp,
+  Matrix3dProp,
   PerspectiveProp,
-  Rotate3dProp,
   RotateProp,
   RotateXProp,
   RotateYProp,
   RotateZProp,
-  Scale3dProp,
+  Rotate3dProp,
   ScaleProp,
-  SkewProp,
-  Translate3dProp,
-  TranslateProp,
-  TranslateZProp,
   ScaleXProp,
   ScaleYProp,
   ScaleZProp,
+  Scale3dProp,
+  SkewProp,
   SkewXProp,
   SkewYProp,
+  TranslateProp,
   TranslateXProp,
   TranslateYProp,
+  TranslateZProp,
+  Translate3dProp,
 } from './properties/index'
 import { TransformLengthUnit, TransformAngleUnit, TransformPercentageUnit } from './utils/index'
 
@@ -27,19 +27,15 @@ export interface TransformProps {
   /**
    * Describes a homogeneous 2D transformation matrix.
    */
-  matrix3d?: Matrix3dProp
+  matrix?: MatrixProp
   /**
    * Describes a 3D transformation as a 4×4 homogeneous matrix.
    */
-  matrix?: MatrixProp
+  matrix3d?: Matrix3dProp
   /**
    * Sets the distance between the user and the z=0 plane.
    */
   perspective?: PerspectiveProp
-  /**
-   * Rotates an element around a fixed axis in 3D space.
-   */
-  rotate3d?: Rotate3dProp
   /**
    * Rotates an element around a fixed point on the 2D plane.
    */
@@ -57,9 +53,9 @@ export interface TransformProps {
    */
   rotateZ?: RotateZProp
   /**
-   * Scales an element up or down in 3D space.
+   * Rotates an element around a fixed axis in 3D space.
    */
-  scale3d?: Scale3dProp
+  rotate3d?: Rotate3dProp
   /**
    * Scales an element up or down on the 2D plane.
    */
@@ -77,6 +73,10 @@ export interface TransformProps {
    */
   scaleZ?: ScaleZProp
   /**
+   * Scales an element up or down in 3D space.
+   */
+  scale3d?: Scale3dProp
+  /**
    * Skews an element on the 2D plane.
    */
   skew?: SkewProp
@@ -88,10 +88,6 @@ export interface TransformProps {
    * Skews an element in the vertical direction.
    */
   skewY?: SkewYProp
-  /**
-   * Translates an element in 3D space.
-   */
-  translate3d?: Translate3dProp
   /**
    * Translates an element on the 2D plane.
    */
@@ -108,6 +104,10 @@ export interface TransformProps {
    * Translates an element along the z-axis.
    */
   translateZ?: TranslateZProp
+  /**
+   * Translates an element in 3D space.
+   */
+  translate3d?: Translate3dProp
 }
 
 /**
