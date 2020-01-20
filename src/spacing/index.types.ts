@@ -26,6 +26,7 @@ export interface Spacing {
   /**
    * Calculate the default value and returns it as a number.
    *
+   * @param asNumber - __asNumber__ tells the function to return a number instead of a string.
    * @returns a number
    */
   (asNumber: true): number
@@ -42,6 +43,7 @@ export interface Spacing {
    *
    * @param multiplier - __multiplier__ is the value used to multiply increment.
    * - Default: `1`
+   * @param asNumber - __asNumber__ tells the function to return a number instead of a string.
    * @returns a number
    */
   (multiplier: number, asNumber: true): number
