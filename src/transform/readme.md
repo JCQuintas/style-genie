@@ -16,12 +16,32 @@ transform({ translate: 10 }) // 'translate(10%)'
 transform({ translate: [10, 20] }) // 'translate(10%, 20%)'
 transform({ translate: { x: 10, y: 20 } }) // 'translate(10%, 20%)'
 transform({ translate: '10em' }) // 'translate(10em)'
-// custom unit override for this call
-transform({ translate: 10 }, { units: { transform: { xy: 'em' } } }) // 'translate(10em)'
+
 // multiple transforms
-transform({ translate: 10, scale: 1.5 }) // 'translate(10%) scale(1.5)'
+transform({
+  translate: 10,
+  scale: 1.5,
+}) // 'translate(10%) scale(1.5)'
+
 // duplicate transforms
-transform([{ translate: 10 }, { translate: 10 }]) // 'translate(10%) translate(10%)'
+transform([
+  {
+    translate: 10,
+  },
+  {
+    translate: 10,
+  },
+]) // 'translate(10%) translate(10%)'
+
+// custom unit override for this call
+transform(
+  {
+    translate: 10,
+  },
+  {
+    units: { transform: { xy: 'em' } },
+  }
+) // 'translate(10em)'
 ```
 
 ## Parameters
@@ -95,68 +115,49 @@ The `transforms` parameter can have one or more of the following properties.
 
 The `matrix` property describes a homogeneous 2D transformation matrix.
 
+<!-- prettier-ignore-start -->
 ```javascript
 interface MatrixObject {
-  a: number;
-  b: number;
-  c: number;
-  d: number;
-  tx: number;
-  ty: number;
+  a: number; b: number;
+  c: number; d: number;
+  tx: number; ty: number;
 }
 
-type MatrixArray = [number, number, number, number, number, number]
+type MatrixArray = [
+  number, number,
+  number, number,
+  number, number
+]
 
 // Usage
 transform({ matrix: MatrixObject | MatrixArray })
 ```
+<!-- prettier-ignore-end -->
 
 ### Matrix3d
 
 Similar to matrix, the `matrix3d` property describes a 3D transformation as a 4×4 homogeneous matrix.
 
+<!-- prettier-ignore-start -->
 ```javascript
 interface Matrix3dObject {
-  a1: number;
-  a2: number;
-  a3: number;
-  a4: number;
-  b1: number;
-  b2: number;
-  b3: number;
-  b4: number;
-  c1: number;
-  c2: number;
-  c3: number;
-  c4: number;
-  d1: number;
-  d2: number;
-  d3: number;
-  d4: number;
+  a1: number; a2: number; a3: number; a4: number;
+  b1: number; b2: number; b3: number; b4: number;
+  c1: number; c2: number; c3: number; c4: number;
+  d1: number; d2: number; d3: number; d4: number;
 }
 
 type Matrix3dArray = [
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number,
-  number
+  number, number, number, number,
+  number, number, number, number,
+  number, number, number, number,
+  number, number, number, number
 ]
 
 // Usage
 transform({ matrix3d: Matrix3dObject | Matrix3dArray })
 ```
+<!-- prettier-ignore-end -->
 
 ### Perspective
 
