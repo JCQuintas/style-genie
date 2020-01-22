@@ -116,7 +116,7 @@ The `transforms` parameter can have one or more of the following properties.
 The `matrix` property describes a homogeneous 2D transformation matrix.
 
 <!-- prettier-ignore-start -->
-```javascript
+```typescript
 interface MatrixObject {
   a: number; b: number;
   c: number; d: number;
@@ -139,7 +139,7 @@ transform({ matrix: MatrixObject | MatrixArray })
 Similar to matrix, the `matrix3d` property describes a 3D transformation as a 4×4 homogeneous matrix.
 
 <!-- prettier-ignore-start -->
-```javascript
+```typescript
 interface Matrix3dObject {
   a1: number; a2: number; a3: number; a4: number;
   b1: number; b2: number; b3: number; b4: number;
