@@ -1,6 +1,6 @@
 # Transform
 
-Generate transform strings easily without the need of template strings.
+Generate multiple transform function strings easily without the need of template strings.
 
 This will give you more flexibility when creating or updating transform functions all over your app. It has sensible defaults, but any length value can be overridden either in the generator function or the actual value declaration.
 
