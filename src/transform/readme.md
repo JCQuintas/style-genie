@@ -91,54 +91,223 @@ The `transforms` parameter can have one or more of the following properties.
 | `translateZ`  | Translates an element along the z-axis                    |
 | `translate3d` | Translates an element in 3D space                         |
 
-#### Matrix
+### Matrix
 
-The `matrix` function has two possible signatures.
+The `matrix` property describes a homogeneous 2D transformation matrix.
 
 ```javascript
-// MatrixObject
-transform({
-  matrix: {
-    a: 0,
-    b: 0,
-    c: 0,
-    d: 0,
-    tx: 0,
-    ty: 0,
-  },
-})
+interface MatrixObject {
+  a: number;
+  b: number;
+  c: number;
+  d: number;
+  tx: number;
+  ty: number;
+}
 
-// MatrixArray
-transform({ matrix: [0, 0, 0, 0, 0, 0] })
+type MatrixArray = [number, number, number, number, number, number]
+
+// Usage
+transform({ matrix: MatrixObject | MatrixArray })
 ```
 
-#### Matrix3d
+### Matrix3d
 
-The `matrix3d` function is similar to the regular matrix function, and also takes two signatures.
+Similar to matrix, the `matrix3d` property describes a 3D transformation as a 4×4 homogeneous matrix.
 
 ```javascript
-// Matrix3dObject
-transform({
-  matrix3d: {
-    a1: 0,
-    a2: 0,
-    a3: 0,
-    a4: 0,
-    b1: 0,
-    b2: 0,
-    b3: 0,
-    b4: 0,
-    c1: 0,
-    c2: 0,
-    c3: 0,
-    c4: 0,
-    d1: 0,
-    d2: 0,
-    d3: 0,
-    d4: 0,
-  },
-})
+interface Matrix3dObject {
+  a1: number;
+  a2: number;
+  a3: number;
+  a4: number;
+  b1: number;
+  b2: number;
+  b3: number;
+  b4: number;
+  c1: number;
+  c2: number;
+  c3: number;
+  c4: number;
+  d1: number;
+  d2: number;
+  d3: number;
+  d4: number;
+}
 
-// Matrix3dArray
-transform({ matrix: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] })
+type Matrix3dArray = [
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number
+]
+
+// Usage
+transform({ matrix3d: Matrix3dObject | Matrix3dArray })
+```
+
+### Perspective
+
+Although not commonly used, the `perspective` property sets the distance between the user and the z=0 plane.
+
+```typescript
+// Usage
+transform({ perspective: number | string })
+```
+
+### Rotate/X/Y/Z
+
+The `rotate` property allows for the rotation of an element around a fixed point on the 2D plane. The some of the other rotation properties have the same signature, but affect only a single axis.
+The `rotateX` property describes the rotation of an element around the horizontal axis, `rotateY` will affect the vertical axis, while `rotateZ` will work only on the z-axis.
+
+```typescript
+// Usage
+transform({ rotate: number | string })
+transform({ rotateX: number | string })
+transform({ rotateY: number | string })
+transform({ rotateZ: number | string })
+```
+
+### Rotate3d
+
+The property `rotate3d` will allow for the rotation around a fixed axis in 3D space
+
+```typescript
+interface Rotate3dObject {
+  x: number
+  y: number
+  z: number
+  a: number | string
+}
+
+type Rotate3dArray = [number, number, number, number | string]
+
+// Usage
+transform({ rotate3d: Rotate3dObject | Rotate3dArray | string })
+```
+
+### Scale
+
+Using the `Scale` property allows for scaling an element up or down on the 2D plane
+
+```typescript
+interface ScaleObject {
+  sx: number
+  sy?: number
+}
+
+type ScaleArray = [number, number?]
+
+// Usage
+transform({ scale: ScaleObject | ScaleArray | number })
+```
+
+### ScaleX/Y/Z
+
+Similar to the scale property, `scaleX`, `scaleY` and `scaleZ` will only have effect on their respective axes.
+
+```typescript
+// Usage
+transform({ scaleX: number })
+transform({ scaleY: number })
+transform({ scaleZ: number })
+```
+
+### Scale3d
+
+When dealing with scaling the the 3D space, the `scale3d` property will allow you to change the scaling on all dimensions at once.
+
+```typescript
+interface Scale3dObject {
+  sx: number
+  sy: number
+  sz: number
+}
+
+type Scale3dArray = [number, number, number]
+
+// Usage
+transform({ scale3d: Scale3dObject | Scale3dArray })
+```
+
+### Skew
+
+The property `skew` can be used to skew an element on the 2D plane.
+
+```typescript
+interface SkewObject {
+  ax: number | string
+  ay?: number | string
+}
+
+type SkewArray = [number | string, (number | string)?]
+
+// Usage
+transform({ skew: SkewObject | SkewArray | number | string })
+```
+
+### SkewX/Y
+
+The simpler `skewX` and `skewY` are a subset of the skew function and will skew an element in the horizontal or vertical direction, respectively.
+
+```typescript
+// Usage
+transform({ skewX: number | string })
+transform({ skewY: number | string })
+```
+
+### Translate
+
+The `translate` property allows the user to move an element on the 2D plane.
+
+```typescript
+interface TranslateObject {
+  tx: number | string
+  ty?: number | string
+}
+
+type TranslateArray = [number | string, (number | string)?]
+
+// Usage
+transform({ translate: TranslateObject | TranslateArray | number | string })
+```
+
+### TranslateX/Y/Z
+
+The axis locked translates, `translateX`, `translateY`, `translateZ` allow for an element to be moved on their specific planes.
+
+```typescript
+// Usage
+transform({ translateX: number | string })
+transform({ translateY: number | string })
+transform({ translateZ: number | string })
+```
+
+### Translate3d
+
+A junction of the previous translate functions, the `translate3d` property is used to translate an element in all planes at once.
+
+```typescript
+interface Translate3dObject {
+  tx: number | string
+  ty: number | string
+  tz: number | string
+}
+
+type Translate3dArray = [number | string, number | string, number | string]
+
+// Usage
+transform({ translate3d: Translate3dObject | Translate3dArray | string })
 ```
