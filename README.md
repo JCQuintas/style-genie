@@ -57,5 +57,5 @@ The currently offered utilities are:
 - **[Breakpoint](./src/breakpoint/readme.md)**: Media query strings generated based on customizable values.
 - **[Color](./src/color/readme.md)**: Gives easy access to custom colors and the ability to manipulate them.
 - **[Spacing](./src/spacing/readme.md)**: Maintain a coherent spacing calculation throughout the app.
-- **[Translate](./src/translate/readme.md)**: Generate multiple transform function strings easily without the need of template strings.
+- **[transform](./src/transform/readme.md)**: Generate multiple transform function strings easily without the need of template strings.
 - **[Transition](./src/transition/readme.md)**: Generate transition strings without repetitive typing.
