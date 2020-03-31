@@ -23,6 +23,9 @@ Made with [typescript](https://github.com/microsoft/TypeScript) and well documen
 <a href="https://opensource.org/licenses/MIT">
   <img src="https://badgen.net/npm/license/style-genie" alt="license">
 </a>
+<a href="https://snyk.io/test/github/JCQuintas/style-genie?targetFile=package.json">
+  <img src="https://snyk.io/test/github/JCQuintas/style-genie/badge.svg?targetFile=package.json" alt="known vulnerabilities" >
+</a>
 
 ## Why?
 
