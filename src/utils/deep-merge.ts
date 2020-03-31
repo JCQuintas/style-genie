@@ -6,7 +6,7 @@ export const deepMerge = <T extends object>(original: { [key: string]: any }, to
     return original as T
   }
 
-  Object.keys(toMerge).forEach(key => {
+  Object.keys(toMerge).forEach((key) => {
     const _originalValue = _original[key]
     const toMergeValue = toMerge[key]
 

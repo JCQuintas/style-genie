@@ -13,6 +13,6 @@ export const colorFormatter = (colorArray: ColorArray, format: ColorFormat, hslI
   }
   return `#${colorArray
     .slice(0, 3)
-    .map(v => `0${v!.toString(16)}`.slice(-2))
+    .map((v) => `0${v!.toString(16)}`.slice(-2))
     .join('')}`
 }

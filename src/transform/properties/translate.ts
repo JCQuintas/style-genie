@@ -32,7 +32,7 @@ export const translateToString = (translate: TranslateProp, unit: TransformUnit)
   if (Array.isArray(translate))
     return translate
       .filter(Boolean)
-      .map(v => translateToString(v!, unit))
+      .map((v) => translateToString(v!, unit))
       .join(', ')
   return translate.ty
     ? `${translateToString(translate.tx, unit)}, ${translateToString(translate.ty, unit)}`

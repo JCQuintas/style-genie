@@ -17,7 +17,7 @@ export const skewToString = (skew: SkewProp, unit: TransformAngleUnit): string =
   if (Array.isArray(skew))
     return skew
       .filter(Boolean)
-      .map(v => skewToString(v!, unit))
+      .map((v) => skewToString(v!, unit))
       .join(', ')
   return skew.ay ? `${skewToString(skew.ax, unit)}, ${skewToString(skew.ay, unit)}` : skewToString(skew.ax, unit)
 }

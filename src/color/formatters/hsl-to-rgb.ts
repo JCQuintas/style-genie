@@ -34,6 +34,7 @@ export const HSLArrayToRGBArray = ([h, s, l, a]: ColorArray): ColorArray => {
 
 export const HSLtoRGBArray = (color: string): ColorArray =>
   HSLArrayToRGBArray(
+    // prettier-ignore
     color
       .replace(HSLRegex, '')
       .replace(ColorEndRegex, '')

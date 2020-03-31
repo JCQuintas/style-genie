@@ -32,7 +32,7 @@ const generateTransition: GenerateTransition = (options?: GenerateTransitionPara
     const _cssProperties = cssProperties || defaultTransitionOptions.cssProperty
 
     if (typeof _cssProperties === 'string') return `${_cssProperties} ${_duration}ms ${_easing}`
-    return _cssProperties.map(v => `${v} ${_duration}ms ${_easing}`).join(', ')
+    return _cssProperties.map((v) => `${v} ${_duration}ms ${_easing}`).join(', ')
   }
   return transition
 }

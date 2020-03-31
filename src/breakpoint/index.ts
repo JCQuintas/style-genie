@@ -55,7 +55,7 @@ const generateBreakpoint: GenerateBreakpoint = (options?: GenerateBreakpointPara
   }, {})
 
   const between = (from: any, to: any) => {
-    const _values = _breakpoints.filter(v => v[0] === from || v[0] === to).map(v => v[1])
+    const _values = _breakpoints.filter((v) => v[0] === from || v[0] === to).map((v) => v[1])
     return `@media (min-width: ${_values[0]}${_unit}) and (max-width: ${_values[1] - _step}${_unit})`
   }
 
