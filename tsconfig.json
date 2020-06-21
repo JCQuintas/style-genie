@@ -13,10 +13,5 @@
     "typeRoots": ["node_modules/@types", "src/@types"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "src/**/*.test.ts"],
-  "typedocOptions": {
-    "mode": "modules",
-    "out": "docs",
-    "json": "docs/data.json"
-  }
+  "exclude": ["node_modules", "src/**/*.test.ts"]
 }
