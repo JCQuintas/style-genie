@@ -8,7 +8,7 @@
     "coverage": "jest --coverage",
     "prettier": "prettier --write .",
     "version": "npm run build",
-    "release": "pika publish",
+    "release": "np",
     "link": "cd pkg && npm link && cd .."
   },
   "keywords": [
@@ -20,6 +20,9 @@
   ],
   "author": "Jose Quintas",
   "license": "MIT",
+  "resolutions": {
+    "np": "^7.0.0"
+  },
   "devDependencies": {
     "@pika/pack": "^0.5.0",
     "@pika/plugin-build-node": "^0.9.2",
@@ -31,6 +34,7 @@
     "husky": "^4.3.0",
     "jest": "^26.6.1",
     "lint-staged": "^10.5.1",
+    "np": "^7.0.0",
     "prettier": "^2.1.2",
     "ts-jest": "^26.4.3",
     "typescript": "^4.0.5"

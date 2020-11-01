@@ -31,9 +31,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Remove unnecessary dependencies
+        run: grep -v '"@pika/\|"pika":\|jest"\|"husky"\|"lint-staged"\|"prettier"\|"np"' ./pkg/package.json > temp && mv temp ./pkg/package.json
+
+      - name: Create Tags
+        run: npm run release -- ${{ github.event.inputs.version }}
+
       - name: Publish
-        run: |
-          npm whoami
-          npx np ${{ github.event.inputs.version }}
+        run: cd pkg && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
