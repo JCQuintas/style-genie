@@ -25,10 +25,9 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
 
-
       - name: Install
         run: npm ci
-        
+
       - name: Build
         run: npm run build
 
@@ -38,4 +37,3 @@ jobs:
           npx np ${{ github.event.inputs.version }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-

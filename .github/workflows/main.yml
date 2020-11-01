@@ -60,6 +60,6 @@ jobs:
 
       - name: Install
         run: npm ci
-      
+
       - name: Build
         run: npm run build
