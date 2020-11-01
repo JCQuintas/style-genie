@@ -25,6 +25,9 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Install
+        run: npm ci
+
       - name: Create Tags
         run: npm run release -- ${{ github.event.inputs.version }}
 
