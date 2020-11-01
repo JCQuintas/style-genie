@@ -1,6 +1,6 @@
 {
   "name": "style-genie",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A style utility for css-in-js frameworks.",
   "scripts": {
     "build": "pika build",
