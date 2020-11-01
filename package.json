@@ -6,7 +6,7 @@
     "build": "pika build",
     "test": "jest",
     "coverage": "jest --coverage",
-    "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "prettier": "prettier --write .",
     "version": "npm run build",
     "release": "pika publish",
     "link": "cd pkg && npm link && cd .."
@@ -41,7 +41,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    ".": [
       "prettier --write"
     ]
   },

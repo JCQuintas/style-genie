@@ -1,6 +1,6 @@
 name: Publish to NPM
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       version:
@@ -13,17 +13,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v2.1.2
-      with:
-        registry-url: 'https://registry.npmjs.org'
-    - name: Install, Build and Publish
-      run: |
-        npm install
-        npm run build
-        npm whoami
-        npx np ${{ github.event.inputs.version }}
-      env:
-        CI: true
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: actions/checkout@v2
+
+      - name: Configure git
+        run: |
+          git config user.email "juniorquintas@gmail.com"
+          git config user.name "Jose Quintas"
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2.1.2
+        with:
+          registry-url: 'https://registry.npmjs.org'
+
+
+      - name: Install
+        run: npm ci
+        
+      - name: Build
+        run: npm run build
+
+      - name: Publish
+        run: |
+          npm whoami
+          npx np ${{ github.event.inputs.version }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
