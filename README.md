@@ -14,9 +14,6 @@ Made with [typescript](https://github.com/microsoft/TypeScript) and well documen
 <a href="https://github.com/microsoft/TypeScript">
   <img src="https://badgen.net/npm/types/style-genie?icon=typescript&label" alt="latest version">
 </a>
-<a href="https://codecov.io/gh/JCQuintas/style-genie">
-  <img src="https://badgen.net/codecov/c/github/JCQuintas/style-genie/master?icon=codecov" alt="code coverage">
-</a>
 <a href="https://www.codefactor.io/repository/github/jcquintas/style-genie">
   <img src="https://www.codefactor.io/repository/github/jcquintas/style-genie/badge" alt="code quality">
 </a>
